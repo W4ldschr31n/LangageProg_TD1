@@ -1,0 +1,50 @@
+.____                                                     .___                                                                       __  .__
+|    |   _____    ____    _________     ____   ____     __| _/____   _____________  ____   ________________    _____   _____ _____ _/  |_|__| ____   ____
+|    |   \__  \  /    \  / ___\__  \   / ___\_/ __ \   / __ |/ __ \  \____ \_  __ \/  _ \ / ___\_  __ \__  \  /     \ /     \\__  \\   __\  |/  _ \ /    \
+|    |___ / __ \|   |  \/ /_/  > __ \_/ /_/  >  ___/  / /_/ \  ___/  |  |_> >  | \(  <_> ) /_/  >  | \// __ \|  Y Y  \  Y Y  \/ __ \|  | |  (  <_> )   |  \
+|_______ (____  /___|  /\___  (____  /\___  / \___  > \____ |\___  > |   __/|__|   \____/\___  /|__|  (____  /__|_|  /__|_|  (____  /__| |__|\____/|___|  /
+        \/    \/     \//_____/     \//_____/      \/       \/    \/  |__|               /_____/            \/      \/      \/     \/                    \/
+
+
+
+        _____________________   ____
+        \__    ___/\______   \ /_   |
+          |    |    |     ___/  |   |
+          |    |    |    |      |   |
+          |____|    |____|      |___|
+
+  --------------------------------------------------------------------------
+
+Interface File <T>:
+- getTete: T element
+- getQueue: T element
+- ajouterQueue (T element)
+- eneleverTete(): T element
+- contient(T element): boolean
+- taille: int
+- concatener(File f)
+- estVide(): boolean
+
+---------------------------------------------------------------------------
+
+Fabriques:
+
+                      FabriqueFile
+                        /
+              FabriqueFileMutable
+              /               |   \______________________________
+              |               |                                 |
+FabriqueFileMutableVide  FabriqueFileMutableParCollection   FabriqueFileMutableParTableau
+
+---------------------------------------------------------------------------
+
+Implementation de Files Mutables <T>:
+  -Attributs:
+    • private T elements;
+    • private int taille;
+
+---------------------------------------------------------------------------
+
+Tests:
+- Tester chaque méthode avec assertEquals
+- Tester la complexité de chasue méthode avec une variable n, puis 2n pour étudier l'évolution du temps de calcul
