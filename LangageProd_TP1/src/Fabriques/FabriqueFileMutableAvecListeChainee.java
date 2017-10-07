@@ -1,5 +1,6 @@
+package Fabriques;
 
-public class FabriqueListeMutableAvecListeChainee<T> implements FabriqueFileMutable<T> {
+public class FabriqueFileMutableAvecListeChainee<T> implements FabriqueFileMutable<T> {
 
 	@Override
 	public File<T> FabriqueFileVide() {

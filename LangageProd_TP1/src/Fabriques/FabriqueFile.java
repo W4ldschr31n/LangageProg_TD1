@@ -1,3 +1,4 @@
+package Fabriques;
 
 public interface FabriqueFile<T> {
 	public File<T> FabriqueFileVide();
