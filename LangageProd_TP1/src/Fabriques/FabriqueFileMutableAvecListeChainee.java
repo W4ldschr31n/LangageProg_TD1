@@ -1,25 +1,24 @@
 package Fabriques;
 
+import Files.FileMutableAvecListeChainee;
+import Files.Interface.File;
+import Files.Interface.FileMutable;
+
 public class FabriqueFileMutableAvecListeChainee<T> implements FabriqueFileMutable<T> {
 
 	@Override
-	public File<T> FabriqueFileVide() {
-		FileMutable<T> file = new FileMutable<T>();
+	public FileMutableAvecListeChainee<T> FabriqueFileVide() {
+		return new FileMutableAvecListeChainee<T>();
 	}
 
 	@Override
-	public File<T> FabriqueFileElements(File<T>[] files) {
-		FileMutable<T> file = new FileMutable<T>();
-		for(File<T> f : files) {
-			file.concatener(f);
+	public FileMutableAvecListeChainee<T> FabriqueFileElements(T[] elements) {
+		FileMutableAvecListeChainee<T> file = new FileMutableAvecListeChainee<T>();
+		for(T element : elements) {
+			file.ajouterQueue(element);
 		}
 		return file;
 	}
 
-	@Override
-	public File<T> FabriqueFileJSP() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
