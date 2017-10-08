@@ -4,6 +4,6 @@ import Files.Interface.File;
 import Files.Interface.FileMutable;
 
 public interface FabriqueFileMutable<T> extends FabriqueFile<T> {
-	public FileMutable<T> FabriqueFileVide();
-	public FileMutable<T> FabriqueFileElements(T[] elements);
+	public FileMutable<T> creerFileVide();
+	public FileMutable<T> creerFileElements(T[] elements);
 }

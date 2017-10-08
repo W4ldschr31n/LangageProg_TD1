@@ -3,6 +3,6 @@ package Fabriques;
 import Files.Interface.File;
 
 public interface FabriqueFile<T> {
-	public File<T> FabriqueFileVide();
-	public File<T> FabriqueFileElements(T[] elements);
+	public File<T> creerFileVide();
+	public File<T> creerFileElements(T[] elements);
 }
