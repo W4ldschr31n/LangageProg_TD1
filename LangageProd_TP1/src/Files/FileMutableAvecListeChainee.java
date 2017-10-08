@@ -103,7 +103,7 @@ public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //imple
 	 * @param      f 	une file
 	 */
 	public void concatener(File f){
-	    T[] elementF = f.getElements();
+	    T[] elementF = (T[]) f.getElements();
         for (int i = 0; i <  elementF.length ; i++) {
             this.elements.add(elementF[i]);
         }
