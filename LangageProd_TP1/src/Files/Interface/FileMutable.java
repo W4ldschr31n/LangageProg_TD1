@@ -15,15 +15,15 @@ public interface FileMutable<T> extends File<T> {
     /**
      * Revoie le dernier element de la file
      *
-     * @return dernier élément
+     * @return dernier element
      */
     T getQueue() throws NoSuchElementException;
 
     /**
-     * Retourne tout les éléments de la file de manière ordonnée
-     * Le type de retour dois être adapté au type d'implémentation
+     * Retourne tout les elements de la file de maniere ordonnee
+     * Le type de retour dois etre adapte au type d'implementation
      *
-     * @return  Tableau d'elements de la file ou l'indice 0 correspond a la tête
+     * @return  Tableau d'elements de la file ou l'indice 0 correspond a la tete
      */
     T[] getElements();
 
@@ -37,31 +37,31 @@ public interface FileMutable<T> extends File<T> {
 
     /**
      * Renvoie le premier element de la file et le supprime apres de la file
-     * La modification se fait sur l'objet même
-     * Preconditions: La file ne dois pas être vide.
+     * La modification se fait sur l'objet meme
+     * Preconditions: La file ne dois pas etre vide.
      *
      * @return  Un element de type T
      */
     T enleverTete() throws EmptyStackException;
 
     /**
-     * Teste si un élément est/ou non dans la file
+     * Teste si un element est ou non dans la file
      *
      * @param element
-     * @return Vrai si l'élément est présent dans la file
+     * @return Vrai si l'element est present dans la file
      */
     boolean contient(T element);
 
     /**
-     * Revoie le nombre d'éléments présents dans la fille
+     * Revoie le nombre d'elements presents dans la file
      *
      * @return taille
      */
     int taille();
 
     /**
-     * Concatène a la queue une autre file f en conservant l'ordre de ses éléments
-     * Pre Condition: les éléments de l'autre file sont également de type T
+     * Concatene a la queue une autre file en conservant l'ordre de ses elements
+     * Pre Condition: les elements de l'autre file sont egalement de type T
      *
      * @param f une autre File
      */

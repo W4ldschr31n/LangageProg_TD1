@@ -14,7 +14,7 @@ public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //imple
 	
 	/**
 	 * Constructeur d'une file avec une liste chainee
-	 * initialise l'attribut elements qui correspond � une liste chainee
+	 * initialise l'attribut elements qui est une liste chainee
 	 *
 	 */
 	public FileMutableAvecListeChainee(){
@@ -79,7 +79,7 @@ public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //imple
 
     /**
 	 * Retourne un booleen pour indique si un element se trouve dans la file ou non.
-	 * Renvoie "True" si la file contient l'�lement sinon renvoie "False"
+	 * Renvoie "True" si la file contient l'element sinon renvoie "False"
 	 *
 	 * @param  element  Un element de type T
 	 * @return      un booleen (true si l'element est contenu dans la liste sinon false)
@@ -112,7 +112,7 @@ public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //imple
 	}
 	
 	/**
-	 * Methode qui renvoie un booleen si la file est vide, donc si sa liste chainee ne contient aucun elements
+	 * Methode qui indique si la file ne contient aucun element
 	 *
 	 * @return      un booleen (true si la file est vide sinon false)
 	 */

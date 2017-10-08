@@ -12,34 +12,34 @@ public interface File<T> {
     /**
      * Revoie le dernier element de la file
      *
-     * @return dernier élément
+     * @return le dernier element
      */
     T getQueue();
 
     /**
-     * Retourne tout les éléments de la file de manière ordonnée
+     * Retourne tout les elements de la file de maniere ordonnee
      *
-     * @return Tableau d'elements de la file ou l'indice 0 correspond a la tête
+     * @return Tableau d'elements de la file ou l'indice 0 correspond a la tete
      */
     T[] getElements();
 
     /**
-     * Elève le dernier élement de la file
+     * Retire le dernier element de la file
      *
-     * @return un objet représentant la tete de la file pour ne pas perdre d'information
+     * @return un objet permettant ne pas perdre d'information sur la tete enlevee
      */
     Object enleverTete();
 
     /**
-     * Teste si un élément est/ou non dans la file
+     * Teste si un element est ou non dans la file
      *
      * @param element
-     * @return Vrai si l'élément est présent dans la file
+     * @return Vrai si l'element est present dans la file
      */
     boolean contient(T element);
 
     /**
-     * Revoie le nombre d'éléments présents dans la fille
+     * Revoie le nombre d'elements presents dans la file
      *
      * @return taille
      */
