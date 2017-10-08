@@ -1,17 +1,20 @@
 package Files;
 
+import Files.Interface.File;
+import Files.Interface.FileMutable;
+
 import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 
-public class FileMutableAvecListeChainee <T> { //implements FileMutable
+public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //implements FileMutable
 
 	private LinkedList<T> elements;
 	
 	/**
 	 * Constructeur d'une file avec une liste chainee
-	 * initialise l'attribut elements qui correspond à une liste chainee
+	 * initialise l'attribut elements qui correspond ï¿½ une liste chainee
 	 *
 	 */
 	public FileMutableAvecListeChainee(){
@@ -49,10 +52,9 @@ public class FileMutableAvecListeChainee <T> { //implements FileMutable
 	 * 
 	 * @return      l'attribut elements qui correspond a la liste chainee
 	 */
-	public LinkedList<T> getElements(){
-		return this.elements;
-	}
-	
+	public T[] getElements(){
+		return (T[]) this.elements.toArray();	}
+
 	/**
 	 * Ajoute un element du meme type que les elements de la file en bout de file
 	 * 
@@ -73,10 +75,11 @@ public class FileMutableAvecListeChainee <T> { //implements FileMutable
 		}
 		return this.elements.pop(); 
 	}
-	
-	/**
+
+
+    /**
 	 * Retourne un booleen pour indique si un element se trouve dans la file ou non.
-	 * Renvoie "True" si la file contient l'élement sinon renvoie "False"
+	 * Renvoie "True" si la file contient l'ï¿½lement sinon renvoie "False"
 	 *
 	 * @param  element  Un element de type T
 	 * @return      un booleen (true si l'element est contenu dans la liste sinon false)
@@ -93,14 +96,19 @@ public class FileMutableAvecListeChainee <T> { //implements FileMutable
 	public int taille(){
 		return this.elements.size();
 	}
-	
+
 	/**
 	 * Concatene une file avec une autre dont les elements sont du meme type
 	 *
 	 * @param      f 	une file
 	 */
-	public void concatener(File<T> f){
-		this.elements.addAll(f.getElements());
+	public void concatener(File f){
+	    T[] elementF = f.getElements();
+        for (int i = 0; i <  elementF.length ; i++) {
+            this.elements.add(elementF[i]);
+        }
+
+
 	}
 	
 	/**
@@ -115,4 +123,7 @@ public class FileMutableAvecListeChainee <T> { //implements FileMutable
 	public String toString(){
 		return this.elements.toString();
 	}
+
+
+
 }

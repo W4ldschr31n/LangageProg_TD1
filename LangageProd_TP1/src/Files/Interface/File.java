@@ -19,9 +19,9 @@ public interface File<T> {
     /**
      * Retourne tout les éléments de la file de manière ordonnée
      *
-     * @return La liste des éléments contenus dans la file
+     * @return Tableau d'elements de la file ou l'indice 0 correspond a la tête
      */
-    Object getElements();
+    T[] getElements();
 
     /**
      * Elève le dernier élement de la file

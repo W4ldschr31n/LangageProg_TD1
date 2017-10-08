@@ -23,9 +23,9 @@ public interface FileMutable<T> extends File<T> {
      * Retourne tout les éléments de la file de manière ordonnée
      * Le type de retour dois être adapté au type d'implémentation
      *
-     * @return La liste des éléments contenus dans la file
+     * @return  Tableau d'elements de la file ou l'indice 0 correspond a la tête
      */
-    Object getElements();
+    T[] getElements();
 
     /**
      * Ajoute un element du meme type que les elements de la file en bout de file
