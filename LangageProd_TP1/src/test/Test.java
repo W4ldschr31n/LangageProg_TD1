@@ -1,4 +1,5 @@
 package test;
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 import Fabriques.FabriqueFileMutableAvecListeChainee;
@@ -60,6 +61,21 @@ public class Test {
 		System.out.println("false = "+fileacomparer1.equals(fileacomparer4));
 		System.out.println("false = "+fileacomparer1.equals(1));
 		System.out.println("false = "+fileacomparer1.equals(fab.creerFileVide()));
+
+
+		Integer[] tabDix = new Integer[10];
+		Integer[] tabMille = new Integer[1000];
+		Arrays.fill(tabDix,0);
+		Arrays.fill(tabMille,0);
+		tabDix[9]=1;
+		tabMille[999]=1;
+		
+		FileMutableAvecListeChainee<Integer> fileComplexite1 = fab.creerFileElements(tabDix);
+		FileMutableAvecListeChainee<Integer> fileComplexite2 = fab.creerFileElements(tabMille);
+		
+		
+		
+		
 		
 		
 	}
