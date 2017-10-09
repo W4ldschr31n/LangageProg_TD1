@@ -1,6 +1,7 @@
 package test;
 import java.util.EmptyStackException;
 
+import Fabriques.FabriqueFileMutableAvecListeChainee;
 import Files.FileMutableAvecListeChainee;
 
 
@@ -47,7 +48,19 @@ public class Test {
 //		System.out.println("fm2: "+fm2.toString());
 //		fm2.concatener(fm3);
 //		System.out.println(fm2.toString());
-
+		
+		FabriqueFileMutableAvecListeChainee<Integer> fab = new FabriqueFileMutableAvecListeChainee<>();
+		FileMutableAvecListeChainee<Integer> fileacomparer1 = fab.creerFileElements(new Integer[] {4,12,9,32,7});
+		FileMutableAvecListeChainee<Integer> fileacomparer2 = fab.creerFileElements(new Integer[] {4,12,9,32,7});
+		FileMutableAvecListeChainee<Integer> fileacomparer3 = fab.creerFileElements(new Integer[] {0,-1});
+		FileMutableAvecListeChainee<Integer> fileacomparer4 = fab.creerFileElements(new Integer[] {4,12,9,32,8});
+		
+		System.out.println("true = "+fileacomparer1.equals(fileacomparer2));
+		System.out.println("false = "+fileacomparer1.equals(fileacomparer3));
+		System.out.println("false = "+fileacomparer1.equals(fileacomparer4));
+		System.out.println("false = "+fileacomparer1.equals(1));
+		System.out.println("false = "+fileacomparer1.equals(fab.creerFileVide()));
+		
 		
 	}
 }

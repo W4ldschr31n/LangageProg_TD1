@@ -7,6 +7,8 @@ import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
+import Fabriques.FabriqueFileMutableAvecListeChainee;
+
 
 public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //implements FileMutable
 
@@ -122,6 +124,25 @@ public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //imple
 	
 	public String toString(){
 		return this.elements.toString();
+	}
+	
+	public boolean equals(Object o) {
+		if(o instanceof FileMutableAvecListeChainee) {
+			FileMutableAvecListeChainee autre = (FileMutableAvecListeChainee) o;
+			if(autre.taille()!=this.taille())
+				return false;
+			FabriqueFileMutableAvecListeChainee<T> fab = new FabriqueFileMutableAvecListeChainee();
+			FileMutableAvecListeChainee<T> copie = fab.creerFileElements(this.getElements());
+			boolean flag = false;
+			while(!copie.estVide()) {
+				if(!copie.enleverTete().equals(autre.enleverTete())) {
+					flag = true;
+					break;
+				}
+			}
+			return !flag;
+		}else
+			return false;
 	}
 
 
