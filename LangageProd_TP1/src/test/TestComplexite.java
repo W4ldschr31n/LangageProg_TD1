@@ -8,14 +8,14 @@ import Files.FileMutableAvecListeChainee;
 public class TestComplexite {
 	
 public static void main(String[] args) {
-	testerComplexiter(10,100);
-	testerComplexiter(10,1000);
-	testerComplexiter(10,1000000);
+	testerComplexite(10,100);
+	testerComplexite(10,1000);
+	testerComplexite(10,1000000);
 
 	
 }
 	
-	public static  void testerComplexiter(int min, int max) {
+	public static  void testerComplexite(int min, int max) {
 		Integer[] tabMin = new Integer[min];
 		Integer[] tabMax = new Integer[max];
 		Arrays.fill(tabMin,0);
@@ -47,7 +47,7 @@ public static void main(String[] args) {
 		fileComplexite2.getQueue();
 		endTime = System.nanoTime();
 		long durationQueue2 = (endTime - startTime);
-		System.out.println("Durée méthode getQueue pour "+min+": "+durationQueue2+"ms");
+		System.out.println("Durée méthode getQueue pour "+max+": "+durationQueue2+"ms");
 		
 		double complexite = (duration2/duration);
 		double complexite2 = (durationQueue2/durationQueue);
