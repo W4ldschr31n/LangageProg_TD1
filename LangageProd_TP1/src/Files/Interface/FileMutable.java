@@ -32,8 +32,9 @@ public interface FileMutable<T> extends File<T> {
      * La modification se fait sur l'objet mÃªme
      *
      * @param  element  Un element de type T
+     *  @return la file apres tentative d'insertion
      */
-    void ajouterQueue(T element);
+    FileMutable<T> ajouterQueue(T element);
 
     /**
      * Renvoie le premier element de la file et le supprime apres de la file
@@ -64,8 +65,9 @@ public interface FileMutable<T> extends File<T> {
      * Pre Condition: les elements de l'autre file sont egalement de type T
      *
      * @param f une autre File
+     * @return la file resultat de l'opération
      */
-    void concatener(File<T> f);
+    FileMutable<T> concatener(File<T> f);
 
     /**
      * Teste si la file est vide ou non

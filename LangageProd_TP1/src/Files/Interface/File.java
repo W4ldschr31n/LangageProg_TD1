@@ -51,4 +51,22 @@ public interface File<T> {
      * @return Vrai si la file est vide
      */
     boolean estVide();
+    
+    /**
+     * Ajoute un element du meme type que les elements de la file en bout de file
+     *
+     * @param  element  Un element de type T
+     * @return la file generee par l'operation
+     */
+    File<T> ajouterQueue(T element);
+    
+    
+    /**
+     * Concatene a la queue une autre file en conservant l'ordre de ses elements
+     * Pre Condition: les elements de l'autre file sont egalement de type T
+     *
+     * @param f une autre File
+     * @return la file resultant de l'operation
+     */
+    File<T> concatener(File<T> f);
 }

@@ -61,9 +61,11 @@ public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //imple
 	 * Ajoute un element du meme type que les elements de la file en bout de file
 	 * 
 	 * @param  element  Un element de type T
+	 * @return la liste après tentative d'insertion
 	 */
-	public void ajouterQueue(T element){
+	public FileMutableAvecListeChainee<T> ajouterQueue(T element){
 		this.elements.add(element);
+		return this;
 	}
 	
 	/**
@@ -103,13 +105,14 @@ public class FileMutableAvecListeChainee <T> implements FileMutable<T> { //imple
 	 * Concatene une file avec une autre dont les elements sont du meme type
 	 *
 	 * @param      f 	une file
+	 * @return la file obtenue après operation
 	 */
-	public void concatener(File f){
+	public FileMutableAvecListeChainee<T> concatener(File f){
 	    T[] elementF = (T[]) f.getElements();
         for (int i = 0; i <  elementF.length ; i++) {
             this.elements.add(elementF[i]);
         }
-
+        return this;
 
 	}
 	

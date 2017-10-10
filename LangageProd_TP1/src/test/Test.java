@@ -30,6 +30,7 @@ public class Test {
 		
 		System.out.println(fm1.toString()+" vide? "+fm1.estVide());
 		try{
+			System.out.println("Provocation d'exception");
 			fm1.enleverTete();
 			fm1.enleverTete();
 			fm1.enleverTete();
@@ -37,7 +38,7 @@ public class Test {
 			fm1.enleverTete();
 		}
 		catch (EmptyStackException e){
-			System.out.println("File vide! "+e.getMessage());
+			System.out.println("Exception attrappee!");
 		}
 
 		System.out.println(fm1.toString()+" vide? "+fm1.estVide());
