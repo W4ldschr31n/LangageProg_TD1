@@ -8,23 +8,23 @@ public interface ListeMutable<E> extends Liste<E>{
 	 * Accesseurs.
 	 */
 	/**
-	 * Retourne le reste des éléments de la liste.
+	 * Retourne le reste des Ã©lÃ©ments de la liste.
 	 */
 	default ListeMutable<E> reste() {
 		throw new UnsupportedOperationException();
 	}
 	
 	/**
-	 * Change le reste des éléments de la liste (qui suivent la tête).
-	 * @param reste la liste des nouveaux éléments à changer.
+	 * Change le reste des Ã©lÃ©ments de la liste (qui suivent la tÃªte).
+	 * @param reste la liste des nouveaux Ã©lÃ©ments Ã  changer.
 	 */
 	default void changerReste(ListeMutable<E> reste) {
 		throw new UnsupportedOperationException();
 	}
 	
 	/**
-	 * Change la tête de liste.
-	 * @param tete la nouvelle tête à changer
+	 * Change la tÃªte de liste.
+	 * @param tete la nouvelle tÃªte Ã  changer
 	 */
 	default void changerTete(E tete) {
 		throw new UnsupportedOperationException();
@@ -34,8 +34,8 @@ public interface ListeMutable<E> extends Liste<E>{
 	 * Services
 	 */
 	/**
-	 * Inverse la liste (le premier élément devient le dernier et vice versa).
-	 * @return la liste inversée.
+	 * Inverse la liste (le premier Ã©lÃ©ment devient le dernier et vice versa).
+	 * @return la liste inversÃ©e.
 	 */
 	default ListeMutable<E> miroir(){
 		LinkedList<E> liste = new LinkedList<>();
@@ -51,10 +51,10 @@ public interface ListeMutable<E> extends Liste<E>{
 	}
 
 	/**
-	 * Ajoute un élément en début de liste
-	 * @param t un élément à ajouter
-	 * @param r la liste à laquelle on ajoute l'élément au début
-	 * @return la liste avec l'élément ajouté au début.
+	 * Ajoute un Ã©lÃ©ment en dÃ©but de liste
+	 * @param t un Ã©lÃ©ment Ã  ajouter
+	 * @param r la liste Ã  laquelle on ajoute l'Ã©lÃ©ment au dÃ©but
+	 * @return la liste avec l'Ã©lÃ©ment ajoutÃ© au dÃ©but.
 	 */
 	public static <E> ListeMutable<E> cons(E t, ListeMutable<E> r){
 		return new ListeMutable<E>() {
@@ -72,11 +72,23 @@ public interface ListeMutable<E> extends Liste<E>{
 	
 	/**
 	 * Vide la liste.
-	 * @return la liste vidée.
+	 * @return la liste vidÃ©e.
 	 */
 	public static <E> ListeMutable<E> vide() {
 		return new ListeMutable<E>() {
-			// TODO DÃ©finir les mÃ©thodes utiles.						
+			@Override
+			public boolean casVide() {
+				return true;
+			}
+			//#jesÃ©pa
+//			@Override
+//			public void changerTete(E tete){
+//				ListeMutable.super.changerTete(null);
+//			}
+//			@Override
+//			public void changerReste(ListeMutable<E> r){
+//				ListeMutable.super.changerReste(null);
+//			}
 		};
 	}
 	
