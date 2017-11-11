@@ -29,8 +29,7 @@ public interface Liste<E> extends Iterable<E> {
 	 * Services
 	 */
 	default Iterator<E> iterator() {
-		// TODO
-		return null; // Compléter puis utiliser IterateurListe.
+		return new IterateurListe<E>(this);
 	}
 	default Liste<E> miroir(){
 		// TODO
@@ -42,7 +41,7 @@ public interface Liste<E> extends Iterable<E> {
 	
 	public static <E> Liste<E> vide() {
 		return new Liste<E>() {
-			// TODO Définir les méthodes utiles.			
+			// TODO Définir les méthodes utiles
 		};
 	}
 	
