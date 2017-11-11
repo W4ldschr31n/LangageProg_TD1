@@ -32,8 +32,12 @@ public interface Liste<E> extends Iterable<E> {
 		return new IterateurListe<E>(this);
 	}
 	default Liste<E> miroir(){
-		// TODO
-		return null;
+		Liste miroir = vide();
+		Iterator iterateur = iterator();
+		while (iterateur.hasNext()){
+			cons(iterateur.next(),miroir);
+		}
+		return miroir;
 	}
 	/*
 	 * Fabriques (statiques)
@@ -41,14 +45,39 @@ public interface Liste<E> extends Iterable<E> {
 	
 	public static <E> Liste<E> vide() {
 		return new Liste<E>() {
-			// TODO Définir les méthodes utiles
+			@Override
+			public boolean casVide() {
+				return true;
+			}
+
 		};
 	}
-	
-	public static <E> Liste<E> cons(E t, Liste<E> r) {
+
+	/**
+	 * Ajout en tête
+	 * @param tete
+	 * @param reste
+	 * @param <E>
+	 * @return
+	 */
+	public static <E> Liste<E> cons(E tete, Liste<E> reste) {
 		return new Liste<E>() {
-			// TODO Définir les méthodes utiles.			
+			@Override
+			public E tete() {
+				return tete;
+			}
+
+			@Override
+			public Liste<E> reste() {
+				return reste;
+			}
+
+			@Override
+			public int taille() {
+				return reste.taille()+1;
+			}
 		};
 	}
+
 	
 }

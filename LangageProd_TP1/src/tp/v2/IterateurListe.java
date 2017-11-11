@@ -19,8 +19,9 @@ public class IterateurListe<E> implements Iterator<E> {
 
 	@Override
 	public E next() {
+		E tete = (E)courant.tete();
 		this.courant = this.courant.reste();
-		return (E)this.courant.tete();
+		return tete;
 	}
 
 }
