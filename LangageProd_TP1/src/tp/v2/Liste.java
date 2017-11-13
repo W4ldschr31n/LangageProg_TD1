@@ -24,9 +24,10 @@ public interface Liste<E> extends Iterable<E> {
 	default public boolean estVide(){
 		return this.taille() == 0;
 	}
-	
-	/*
-	 * Services
+
+	/**
+	 * Cree un iterator sur la liste
+	 * @return IterateurListe
 	 */
 	default Iterator<E> iterator() {
 		return new IterateurListe<E>(this);
@@ -39,10 +40,13 @@ public interface Liste<E> extends Iterable<E> {
 		}
 		return miroir;
 	}
-	/*
-	 * Fabriques (statiques)
+
+
+	/**
+	 * Fabrique une liste vide
+	 * @param <E>
+	 * @return Une liste vide
 	 */
-	
 	public static <E> Liste<E> vide() {
 		return new Liste<E>() {
 			@Override
@@ -55,10 +59,10 @@ public interface Liste<E> extends Iterable<E> {
 
 	/**
 	 * Ajout en tête
-	 * @param tete
-	 * @param reste
+	 * @param tete de la nouvelle liste
+	 * @param reste liste des étléments de queue
 	 * @param <E>
-	 * @return
+	 * @return Une nouvelle liste avec l'élément en plus
 	 */
 	public static <E> Liste<E> cons(E tete, Liste<E> reste) {
 		return new Liste<E>() {

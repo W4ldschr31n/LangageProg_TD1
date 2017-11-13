@@ -1,0 +1,13 @@
+TP V2
+Interface file immutable (nico)
+Test des listes ( les interfaces)(Lea)
+Implantation fileMutable + test (Louis)
+Implementation fileImmutable +test (Nico)
+Comparer perf
+Generer la javadoc(evrrrybody)
+
+TP V3
+Factorisation des methodes + Fichier d 'explication
+
+TP V4
+Decomposer les files de maniere hierarchique a fond
