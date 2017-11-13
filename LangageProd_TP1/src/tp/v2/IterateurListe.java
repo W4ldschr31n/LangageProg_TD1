@@ -14,7 +14,7 @@ public class IterateurListe<E> implements Iterator<E> {
 
 	@Override
 	public boolean hasNext() {
-		return courant.reste().casVide();
+		return courant.reste()!=null;
 	}
 
 	@Override
