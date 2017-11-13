@@ -67,7 +67,16 @@ public interface ListeMutable<E> extends Liste<E>{
 			}
 			@Override
 			public void changerReste(ListeMutable<E> r){
-				this.reste=r;
+				this.reste = ListeMutable.vide();
+				//permet d'ajouter en reste le même objet
+				//parce que sinon ça bug vu qu'on modifie
+				//en même temps la même instance
+				ListeMutable listeTmp = r.miroir();
+				IterateurListe it = new IterateurListe(listeTmp);
+				while(it.hasNext()){
+					this.reste = ListeMutable.cons((E) it.next(), this.reste);
+				}
+				
 			}
 			@Override
 			public E tete(){
@@ -84,6 +93,10 @@ public interface ListeMutable<E> extends Liste<E>{
 			@Override 
 			public boolean casVide(){
 				return false;
+			}
+			@Override
+			public int taille(){
+				return 1+this.reste.taille();
 			}
 			
 		};
