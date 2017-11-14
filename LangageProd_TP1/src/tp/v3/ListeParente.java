@@ -67,9 +67,11 @@ public interface ListeParente<E> extends Iterable<E> {
     ListeParente miroir = vide();
     Iterator iterateur = iterator();
     while (iterateur.hasNext()){
-      cons(iterateur.next(),miroir);
+      cons((E)(iterateur.next()),miroir);
     }
     return miroir;
   }
 
+  ListeParente<E> vide();
+  ListeParente<E> cons(E tete, ListeParente<E> reste);
 }
