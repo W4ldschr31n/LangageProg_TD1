@@ -23,8 +23,10 @@ public interface FileImmutable<E> extends File<E> {
 	 * @return la file correspondant
 	 */
 	@Override
-	default FileImmutable<E> ajout(E dernierDansFile) {
-		return creer(dernierDansFile);
+	default FileImmutable<E> ajout(E dernierDansFile){
+		FileImmutable<E> listeDebut = this;
+		listeDebut.ajout(dernierDansFile);
+		return listeDebut;
 	}
 
 	/**
@@ -33,9 +35,10 @@ public interface FileImmutable<E> extends File<E> {
 	 */
 	@Override
 	default FileImmutable<E> retrait() {
-		return suivants().retrait();
+		return this.suivants();
 	}
 	// Complexité O(|secondeFile|)
+
 	@Override
 	default FileImmutable<E> ajout(File<E> secondeFile){
 		FileImmutable<E> r = this;
