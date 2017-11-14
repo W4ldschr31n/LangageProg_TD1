@@ -1,4 +1,6 @@
-package tp.v2;
+package tp.v3.listes;
+
+import tp.v2.IterateurListe;
 
 import java.util.Iterator;
 
@@ -56,7 +58,8 @@ public interface Liste<E> extends Iterable<E> {
 	 * @return IterateurListe
 	 */
 	default Iterator<E> iterator() {
-		return new IterateurListe<E>(this);
+		//new IterateurListe<E>(this);
+		return null;
 	}
 
 	/**
@@ -117,16 +120,6 @@ public interface Liste<E> extends Iterable<E> {
 				return reste.taille()+1;
 			}
 		};
-	}
-
-
-	default public String representer(){
-		Iterator<E> it = iterator();
-		String rep = "[";
-		while (it.hasNext()){
-			rep += it.next()+",";
-		}
-		return rep+"]";
 	}
 
 	

@@ -20,6 +20,11 @@ public interface File<E> extends Iterable<E> {
 	default boolean estVide() {
 		return this.taille() == 0;
 	}
+
+	/**
+	 * Retourne la Taille
+	 * @return
+	 */
 	int taille();
 
 	/**
@@ -65,6 +70,8 @@ public interface File<E> extends Iterable<E> {
 	default boolean estEgal(File<E> file){
 		return premier().equals(file.premier()) && suivants().estEgal(file.suivants());
 	}
+
+
 	
 	
 }

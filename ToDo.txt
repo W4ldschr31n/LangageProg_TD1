@@ -1,9 +1,9 @@
 TP V2
 Interface file immutable (nico) ok
-Test des listes ( les interfaces)(louis)
+Test des listes ( Liste + liste mutable)(louis)
 Implantation fileMutable + test (Louis) FileMutableImpl
 Implementation fileImmutable +test (Nico) FileImutableImpl
-Comparer perf (Léa)
+Comparer perf (Léa) ok
 Generer la javadoc(evrrrybody)
 
 TP V3

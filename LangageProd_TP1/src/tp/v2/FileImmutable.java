@@ -1,5 +1,7 @@
 package tp.v2;
 
+import java.util.Iterator;
+
 public interface FileImmutable<E> extends File<E> {
 
 	/* 
@@ -12,6 +14,7 @@ public interface FileImmutable<E> extends File<E> {
 	 */
 	FileImmutable<E> creer();
 	FileImmutable<E> creer(E dernier);
+
 	
 	/*
 	 * Services
@@ -24,8 +27,15 @@ public interface FileImmutable<E> extends File<E> {
 	 */
 	@Override
 	default FileImmutable<E> ajout(E dernierDansFile) {
+		if( this.suivants().estVide()){
 
-		return creer(dernierDansFile);
+			return creer(dernierDansFile);
+
+		}
+		else {
+			return this.suivants().ajout(dernierDansFile);
+		}
+
 	}
 
 	/**
@@ -34,9 +44,10 @@ public interface FileImmutable<E> extends File<E> {
 	 */
 	@Override
 	default FileImmutable<E> retrait() {
-		return suivants();
+		return this.suivants();
 	}
 	// Complexité O(|secondeFile|)
+
 	@Override
 	default FileImmutable<E> ajout(File<E> secondeFile){
 		FileImmutable<E> r = this;

@@ -4,94 +4,63 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class FileMutableImpl<E> implements FileMutable<E>{
-	private E premier;
-	private FileMutable<E> suivants;
-	private int taille;
-	
-	public FileMutableImpl(){
-		this.taille=0;
-	}
+	private E fin;
+	private ListeMutable<E> liste;
 
+	public FileMutableImpl(){
+	    this.fin = null;
+	    this.liste = ListeMutable.vide();
+    }
+
+
+    /**
+     * Retourne l'element en tete de la file
+     * @return le premier element de la file
+     */
 	@Override
 	public E premier() {
-		return this.premier;
+		return this.liste.tete();
 	}
-
-//	@Override
-//	public FileMutable<E> suivants() {
-//		return this.suivants;
-//	}
 
 	@Override
 	public int taille() {
-		return this.taille;
+		return this.liste.taille();
 	}
 
 	/**
 	 * Permet d'ajouter un element en queue de file
-	 * @param dernierDansFile
+	 * @param element
 	 * @return
 	 */
-	@Override
-	public FileMutable<E> ajout(E dernierDansFile) {
-//		Iterator it = iterator();
-//		FileMutable<E> fileCourante = this;
-//		while (it.hasNext()){
-//			it.next();
-//			fileCourante = fileCourante.suivants();
-//		}
-//		FileMutable<E> derniere = creer();
-//		fileCourante.
-		return null;
-	}
+    @Override
+    public void ajouter(E element) {
 
-	/**
-	 * Retire le premier elements de la file
+        if(estVide()){
+            this.liste = ListeMutable.cons(element,this.liste);
+        }
+        else{
+            this.liste = ListeMutable.cons(element,this.liste.miroir()).miroir();
+        }
+        this.fin = element;
+    }
+
+    /**
+	 * Retire le premier element de la file
 	 * @return
 	 */
-	@Override
-	public FileMutable<E> retrait() {
-		this.premier=suivants().premier();
-		this.suivants=suivants().suivants();
-		return this;
-	}
+    @Override
+    public void retirer() {
+        if(estVide())
+            throw new UnsupportedOperationException();
+        this.liste = this.liste.reste();
+    }
 
-	
-	@Override
-	public FileMutable<E> ajout(File secondeFile) {
-		ajouter(secondeFile);
-		return this;
-	}
 
 	@Override
 	public Iterator<E> iterator() {
-		LinkedList<E> it = new LinkedList<>();
-		it.add(this.premier);
-		FileMutable<E> suiv = this.suivants;
-		while (suiv !=null){
-			it.add(suiv.premier());
-			suiv = suiv.suivants();
-		}
-		System.out.println(it.toString());
-		return it.iterator();
+		return new IterateurListe<E>(this.liste);
 	}
 
-	/**
-	 * Permet d'ajouter le premier element
-	 * @param element
-	 */
-	@Override
-	public void ajouter(E element) {
-		this.premier=element;
-	}
-
-	/**
-	 * Retire le premeir element
-	 */
-	@Override
-	public void retirer() {
-		retrait();
-	}
 
 	@Override
 	public FileMutable<E> creer() {
@@ -103,7 +72,7 @@ public class FileMutableImpl<E> implements FileMutable<E>{
 		Iterator<E> it = this.iterator();
 		FileMutable<E> copie = creer();
 		while (it.hasNext()){
-			copie.ajout(it.next());
+			copie.ajouter(it.next());
 		}
 		return copie;
 	}
@@ -112,7 +81,7 @@ public class FileMutableImpl<E> implements FileMutable<E>{
 	public void ajouter(File<E> secondeFile) {
 		Iterator<E> it = this.iterator();
 		while (it.hasNext()){
-			ajout(it.next());
+			ajouter(it.next());
 		}
 	}
 	public String toString(){

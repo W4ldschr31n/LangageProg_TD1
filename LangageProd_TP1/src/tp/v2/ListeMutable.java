@@ -1,5 +1,6 @@
 package tp.v2;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public interface ListeMutable<E> extends Liste<E>{
@@ -38,16 +39,14 @@ public interface ListeMutable<E> extends Liste<E>{
 	 * @return la liste inversÃ©e.
 	 */
 	default ListeMutable<E> miroir(){
-		LinkedList<E> liste = new LinkedList<>();
-		for (E element: this){
-			liste.add(element);
+		Iterator<E> it = this.iterator();
+		ListeMutable<E> miroir = ListeMutable.vide();
+		while(it.hasNext()){
+
+			miroir = ListeMutable.cons(it.next(), miroir);
 		}
-		vide();// on vide la ListeMutable
-		for (int i=liste.size()-1;i>=0;i--){
-			cons(liste.get(i), this);// on ajoute en tete les elements en partant de la fin de la liste
-		}
-		return this;
-		
+		return miroir;
+
 	}
 
 	/**
@@ -68,9 +67,9 @@ public interface ListeMutable<E> extends Liste<E>{
 			@Override
 			public void changerReste(ListeMutable<E> r){
 				this.reste = ListeMutable.vide();
-				//permet d'ajouter en reste le même objet
-				//parce que sinon ça bug vu qu'on modifie
-				//en même temps la même instance
+				//permet d'ajouter en reste le mï¿½me objet
+				//parce que sinon ï¿½a bug vu qu'on modifie
+				//en mï¿½me temps la mï¿½me instance
 				ListeMutable listeTmp = r.miroir();
 				IterateurListe it = new IterateurListe(listeTmp);
 				while(it.hasNext()){
@@ -78,6 +77,7 @@ public interface ListeMutable<E> extends Liste<E>{
 				}
 				
 			}
+
 			@Override
 			public E tete(){
 				return this.tete;
