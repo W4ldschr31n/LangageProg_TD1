@@ -58,13 +58,45 @@ public interface ListeMutable<E> extends Liste<E>{
 	 */
 	public static <E> ListeMutable<E> cons(E t, ListeMutable<E> r){
 		return new ListeMutable<E>() {
+			private E tete = t;
+			private ListeMutable<E> reste=r;
+			
 			@Override
 			public void changerTete(E tete) {
-				ListeMutable.super.changerTete(t);
+				this.tete=tete;
 			}
 			@Override
 			public void changerReste(ListeMutable<E> r){
-				ListeMutable.super.changerReste(r);
+				this.reste = ListeMutable.vide();
+				//permet d'ajouter en reste le même objet
+				//parce que sinon ça bug vu qu'on modifie
+				//en même temps la même instance
+				ListeMutable listeTmp = r.miroir();
+				IterateurListe it = new IterateurListe(listeTmp);
+				while(it.hasNext()){
+					this.reste = ListeMutable.cons((E) it.next(), this.reste);
+				}
+				
+			}
+			@Override
+			public E tete(){
+				return this.tete;
+			}
+			@Override
+			public ListeMutable<E> reste(){
+				return this.reste;
+			}
+			@Override 
+			public boolean casCons(){
+				return true;
+			}
+			@Override 
+			public boolean casVide(){
+				return false;
+			}
+			@Override
+			public int taille(){
+				return 1+this.reste.taille();
 			}
 			
 		};
@@ -76,19 +108,28 @@ public interface ListeMutable<E> extends Liste<E>{
 	 */
 	public static <E> ListeMutable<E> vide() {
 		return new ListeMutable<E>() {
+			private E tete;
+			private ListeMutable<E> reste;
 			@Override
-			public boolean casVide() {
+			public void changerTete(E tete) {
+				this.tete=tete;
+			}
+			@Override
+			public void changerReste(ListeMutable<E> r){
+				this.reste=r;
+			}
+			@Override
+			public ListeMutable<E> reste(){
+				return this.reste;
+			}
+			@Override 
+			public boolean casCons(){
+				return false;
+			}
+			@Override 
+			public boolean casVide(){
 				return true;
 			}
-			//#jesÃ©pa
-//			@Override
-//			public void changerTete(E tete){
-//				ListeMutable.super.changerTete(null);
-//			}
-//			@Override
-//			public void changerReste(ListeMutable<E> r){
-//				ListeMutable.super.changerReste(null);
-//			}
 		};
 	}
 	
