@@ -48,6 +48,11 @@ public interface FileImmutable<E> extends File<E> {
 	}
 	// Complexité O(|secondeFile|)
 
+	/**
+	 *
+	 * @param secondeFile
+	 * @return
+	 */
 	@Override
 	default FileImmutable<E> ajout(File<E> secondeFile){
 		FileImmutable<E> r = this;

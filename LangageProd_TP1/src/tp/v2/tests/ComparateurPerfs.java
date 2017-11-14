@@ -3,6 +3,7 @@ package tp.v2.tests;
 
 
 import tp.v2.File;
+import tp.v2.FileMutableImpl;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
@@ -34,7 +35,7 @@ public class ComparateurPerfs {
     public static void main(String[] arg){
 
         //tester(new FileImutableImpl());
-        //tester(new FileMutableImpl());
+        tester(new FileMutableImpl());
 
     }
 }
