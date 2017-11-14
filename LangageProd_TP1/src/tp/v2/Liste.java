@@ -119,5 +119,7 @@ public interface Liste<E> extends Iterable<E> {
 		};
 	}
 
+
+
 	
 }

@@ -20,6 +20,11 @@ public interface File<E> extends Iterable<E> {
 	default boolean estVide() {
 		return this.taille() == 0;
 	}
+
+	/**
+	 * Retourne la Taille
+	 * @return
+	 */
 	int taille();
 
 	/**

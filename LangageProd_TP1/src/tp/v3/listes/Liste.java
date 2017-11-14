@@ -58,7 +58,8 @@ public interface Liste<E> extends Iterable<E> {
 	 * @return IterateurListe
 	 */
 	default Iterator<E> iterator() {
-		return new IterateurListe<E>(this);
+		//new IterateurListe<E>(this);
+		return null;
 	}
 
 	/**
