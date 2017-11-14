@@ -1,4 +1,6 @@
-package tp.v2;
+package tp.v2.tests;
+
+import tp.v2.ListeMutable;
 
 public class TestListesMutables {
     public static void main(String[] arg){

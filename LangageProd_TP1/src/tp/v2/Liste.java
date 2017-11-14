@@ -67,7 +67,7 @@ public interface Liste<E> extends Iterable<E> {
 		Liste miroir = vide();
 		Iterator iterateur = iterator();
 		while (iterateur.hasNext()){
-			cons(iterateur.next(),miroir);
+			miroir = cons(iterateur.next(),miroir);
 		}
 		return miroir;
 	}
