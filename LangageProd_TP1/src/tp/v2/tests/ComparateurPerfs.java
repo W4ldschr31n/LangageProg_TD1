@@ -13,11 +13,19 @@ public class ComparateurPerfs {
 
     private static void tester(File<String> file) {
         long temps = threadBean.getCurrentThreadCpuTime();
-        file = file.ajouterQueue("un");
-        file = file.ajouterQueue("deux");
-        file = file.ajouterQueue("trois");
+        System.out.println("Vide ? true = "+    file.estVide());
+        file = file.ajout("un");
+        System.out.println("Vide ? false = "+    file.estVide());
+        file = file.ajout("deux");
+        file = file.ajout("trois");
         System.out.println( file.representation());
-        System.out.println( file.enleverTete());
+        System.out.println( file.retrait());
+        System.out.println( file.representation());
+        System.out.println( file.retrait());
+        System.out.println( file.retrait());
+        System.out.println("Vide ? true = "+    file.estVide());
+            
+
 
         temps = threadBean.getCurrentThreadCpuTime() - temps;
         System.out.println(file.getClass() + " - ajout/retrait: " + (temps / diviseur));
