@@ -8,14 +8,17 @@ public class TestFilesImmutables {
 
         System.out.println("Vide ? true = "+    file.estVide());
         file = file.ajout("un");
+        System.out.println( file.representation());
         System.out.println("Vide ? false = "+    file.estVide());
         file = file.ajout("deux");
+        System.out.println( file.representation());
         file = file.ajout("trois");
         System.out.println( file.representation());
-        System.out.println( file.retrait());
+
+        file = file.retrait();
         System.out.println( file.representation());
-        System.out.println( file.retrait());
-        System.out.println( file.retrait());
+        file = file.retrait();
+        file = file.retrait();
         System.out.println("Vide ? true = "+    file.estVide());
 
     }

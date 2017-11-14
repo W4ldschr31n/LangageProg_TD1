@@ -56,7 +56,7 @@ public interface File<E> extends Iterable<E> {
 	default String representation() {
 		String representation = "[/]";
 		if(!estVide()){
-			representation += "["+premier().toString()+"]"+suivants().representation();
+			representation = "["+premier().toString()+"]"+suivants().representation();
 		}
 		return representation;
 	}
