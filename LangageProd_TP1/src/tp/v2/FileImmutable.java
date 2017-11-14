@@ -16,11 +16,21 @@ public interface FileImmutable<E> extends File<E> {
 	/*
 	 * Services
 	 */
+
+	/**
+	 * Ajoute un element a la fin de la file
+	 * @param dernierDansFile l'element a ajouter
+	 * @return la file correspondant
+	 */
 	@Override
 	default FileImmutable<E> ajout(E dernierDansFile) {
 		return creer(dernierDansFile);
 	}
 
+	/**
+	 * Enleve le premier element de la file
+	 * @return
+	 */
 	@Override
 	default FileImmutable<E> retrait() {
 		return suivants().retrait();
