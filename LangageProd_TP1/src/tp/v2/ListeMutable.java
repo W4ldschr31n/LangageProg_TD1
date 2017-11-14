@@ -71,7 +71,7 @@ public interface ListeMutable<E> extends Liste<E>{
 				//parce que sinon �a bug vu qu'on modifie
 				//en m�me temps la m�me instance
 				ListeMutable listeTmp = r.miroir();
-				IterateurListe it = new IterateurListe(listeTmp);
+				IterateurListe<E> it = new IterateurListe<>(listeTmp);
 				while(it.hasNext()){
 					this.reste = ListeMutable.cons((E) it.next(), this.reste);
 				}

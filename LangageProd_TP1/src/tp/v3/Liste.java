@@ -1,7 +1,5 @@
 package tp.v3;
 
-import java.util.Iterator;
-
 public interface Liste<E> extends ListeParente<E> {
 
 

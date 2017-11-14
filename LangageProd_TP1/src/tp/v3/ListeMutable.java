@@ -1,7 +1,5 @@
 package tp.v3;
 
-import java.util.LinkedList;
-
 public interface ListeMutable<E> extends Liste<E>{
 
   /**
@@ -41,7 +39,7 @@ public interface ListeMutable<E> extends Liste<E>{
         //permet d'ajouter en reste le m�me objet
         //parce que sinon �a bug vu qu'on modifie
         //en m�me temps la m�me instance
-        ListeMutable listeTmp = r.miroir();
+        ListeMutable<E> listeTmp = (ListeMutable<E>)r.miroir();
         IterateurListe it = new IterateurListe(listeTmp);
         while(it.hasNext()){
           this.reste = ListeMutable.cons((E) it.next(), this.reste);
