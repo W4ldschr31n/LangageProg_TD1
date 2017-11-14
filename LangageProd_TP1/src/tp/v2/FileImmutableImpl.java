@@ -23,7 +23,11 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
 
     @Override
     public FileImmutable<E> suivants() {
-        return null;
+        FileImmutable<E> suivants = creer();
+        for (E e: debut.reste()) {
+            suivants.ajout(e);
+        }
+        return suivants;
     }
 
     @Override
