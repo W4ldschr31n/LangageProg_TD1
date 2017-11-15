@@ -69,6 +69,7 @@ public interface Liste<E> extends Iterable<E> {
 		while (iterateur.hasNext()){
 			miroir = cons(iterateur.next(),miroir);
 		}
+
 		return miroir;
 	}
 
@@ -122,11 +123,11 @@ public interface Liste<E> extends Iterable<E> {
 
 	default public String representer(){
 		Iterator<E> it = iterator();
-		String rep = "[";
+		String rep = "";
 		while (it.hasNext()){
-			rep += it.next()+",";
+			rep += "["+it.next()+"]";
 		}
-		return rep+"]";
+		return rep+"[/]";
 	}
 
 	

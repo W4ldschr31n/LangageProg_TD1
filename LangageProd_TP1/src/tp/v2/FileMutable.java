@@ -4,9 +4,7 @@ import java.util.Iterator;
 
 public interface FileMutable<E> extends File<E> {
 
-	/*
-	 * Accesseurs
-	 */
+
 	/**
 	 * Retourne les éléments suivants de la file.
 	 * @return les éléments suivants de la file.

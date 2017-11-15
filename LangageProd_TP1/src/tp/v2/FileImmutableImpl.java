@@ -47,8 +47,16 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
         else{
             return creer();
         }
+    }
 
-
+    @Override
+    public FileImmutable<E> creerCopie() {
+        Iterator<E> it = this.iterator();
+        FileImmutable<E> copie = creer();
+        while (it.hasNext()){
+            copie = copie.ajout(it.next());
+        }
+        return copie;
     }
 
     /**
@@ -67,13 +75,13 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
     }
 
     /**
-     * Crée un liste content un élément
+     * Ajoute un élément a la fin de la liste
      * @param dernier
-     * @return
+     * @return liste avec un element en plus
      */
     @Override
     public FileImmutable<E> creer(E dernier) {
-       return  new FileImmutableImpl<>(Liste.cons(dernier,Liste.vide()),Liste.cons(dernier,Liste.vide()));
+        return new FileImmutableImpl<E>(Liste.cons(dernier,this.debut.miroir()).miroir(),Liste.cons(dernier,this.fin));
     }
 
 
@@ -82,18 +90,5 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
         return new IterateurListe<E>(this.debut);
     }
 
-    /* TODO a supprimer si on trouve comment faire ajout dans l' interface*/
-    @Override
-    public FileImmutable<E> ajout(E dernierDansFile) {
-        if( this.suivants().estVide()){
-            return  new FileImmutableImpl<>( (Liste.cons(dernierDansFile,debut.miroir())).miroir(),Liste.cons(dernierDansFile,this.fin));
-        }
-        else {
-            //TODO problème ici la tete se fait ecraser
-            FileImmutable ret = creer();
-            ret.ajout(this.debut.tete());
-            return ret.ajout(this.suivants().ajout(dernierDansFile));
-        }
 
-    }
 }

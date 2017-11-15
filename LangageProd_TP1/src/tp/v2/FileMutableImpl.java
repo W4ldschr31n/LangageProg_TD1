@@ -84,14 +84,14 @@ public class FileMutableImpl<E> implements FileMutable<E>{
 			ajouter(it.next());
 		}
 	}
-	public String toString(){
+	public String representation(){
 		Iterator it = iterator();
-		String rep = "(";
+		String rep = "";
 		while (it.hasNext()){
-			rep+=it.next()+",";
+			rep+="["+it.next()+"]";
 		}
 		rep.substring(0, rep.length());
-		return rep+=")";
+		return rep+="[/]";
 	}
 
 }

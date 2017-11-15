@@ -1,5 +1,7 @@
 package tp.v2;
 
+import java.util.Iterator;
+
 public interface File<E> extends Iterable<E> {
 
 	/**
@@ -54,11 +56,18 @@ public interface File<E> extends Iterable<E> {
 	File<E> ajout(File<E> secondeFile);
 	
 	default String representation() {
-		String representation = "[/]";
-		if(!estVide()){
-			representation = "["+premier().toString()+"]"+suivants().representation();
+//		String representation = "[/]";
+//		if(!estVide()){
+//			representation = "["+premier().toString()+"] "+suivants().representation();
+//		}
+//		return representation;
+
+		Iterator<E> it = iterator();
+		String rep = "";
+		while (it.hasNext()){
+			rep += "["+it.next()+"]";
 		}
-		return representation;
+		return rep+"[/]";
 	}
 
 	/**
@@ -70,6 +79,13 @@ public interface File<E> extends Iterable<E> {
 	default boolean estEgal(File<E> file){
 		return premier().equals(file.premier()) && suivants().estEgal(file.suivants());
 	}
+
+
+	/**
+	 * Crée une copie de la file actuelle.
+	 * @return	une nouvelle instance de file identique à celle-ci.
+	 */
+	File<E> creerCopie();
 
 
 	

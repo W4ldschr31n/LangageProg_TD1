@@ -15,6 +15,12 @@ public interface FileImmutable<E> extends File<E> {
 	FileImmutable<E> creer();
 	FileImmutable<E> creer(E dernier);
 
+	/**
+	 * Crée une copie de la file actuelle.
+	 * @return	une nouvelle instance de file identique à celle-ci.
+	 */
+	FileImmutable<E> creerCopie();
+
 	
 	/*
 	 * Services
@@ -27,15 +33,7 @@ public interface FileImmutable<E> extends File<E> {
 	 */
 	@Override
 	default FileImmutable<E> ajout(E dernierDansFile) {
-		if( this.suivants().estVide()){
-
-			return creer(dernierDansFile);
-
-		}
-		else {
-			return this.suivants().ajout(dernierDansFile);
-		}
-
+		return creer(dernierDansFile);
 	}
 
 	/**
