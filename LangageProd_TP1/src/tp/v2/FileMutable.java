@@ -51,6 +51,7 @@ public interface FileMutable<E> extends File<E> {
 	/**
 	 * Ajoute un élément en queue de file.
 	 * @return la liste avec l'élément ajouté.
+	 * @param dernierDansFile un element de type E
 	 */
 	@Override
 	default FileMutable<E> ajout(E dernierDansFile) {

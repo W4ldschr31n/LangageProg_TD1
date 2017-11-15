@@ -33,7 +33,7 @@ public interface File<T> {
     /**
      * Teste si un element est ou non dans la file
      *
-     * @param element
+     * @param element de type T
      * @return Vrai si l'element est present dans la file
      */
     boolean contient(T element);

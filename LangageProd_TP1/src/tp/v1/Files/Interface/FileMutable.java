@@ -48,7 +48,7 @@ public interface FileMutable<T> extends File<T> {
     /**
      * Teste si un element est ou non dans la file
      *
-     * @param element
+     * @param element de type T
      * @return Vrai si l'element est present dans la file
      */
     boolean contient(T element);
@@ -65,7 +65,7 @@ public interface FileMutable<T> extends File<T> {
      * Pre Condition: les elements de l'autre file sont egalement de type T
      *
      * @param f une autre File
-     * @return la file resultat de l'opération
+     * @return la file resultat de l'opï¿½ration
      */
     FileMutable<T> concatener(File<T> f);
 

@@ -25,7 +25,8 @@ public interface FileImmutable<E> extends File<E> {
 
 	/**
 	 * Fabrique une file avec un element en tete
-	 * @return une instance de File
+	 * @return une instance de File*
+	 * @param  dernier un elément de type E
 	 */
 	FileImmutable<E> creer(E dernier);
 
@@ -61,9 +62,9 @@ public interface FileImmutable<E> extends File<E> {
 	// Complexité O(|secondeFile|)
 
 	/**
-	 *
-	 * @param secondeFile
-	 * @return
+	 * Ajoute tout les éléments d'une file a la file actuelle
+	 * @param secondeFile un File de E
+	 * @return une file concaténée
 	 */
 	@Override
 	default FileImmutable<E> ajout(File<E> secondeFile){

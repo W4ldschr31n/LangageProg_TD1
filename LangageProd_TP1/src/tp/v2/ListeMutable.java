@@ -54,6 +54,7 @@ public interface ListeMutable<E> extends Liste<E>{
 	 * @param t un élément à ajouter
 	 * @param r la liste à laquelle on ajoute l'élément au début
 	 * @return la liste avec l'élément ajouté au début.
+	 * @param <E> Type d' éléments de la Liste annonyme
 	 */
 	public static <E> ListeMutable<E> cons(E t, ListeMutable<E> r){
 		return new ListeMutable<E>() {
@@ -105,6 +106,7 @@ public interface ListeMutable<E> extends Liste<E>{
 	/**
 	 * Vide la liste.
 	 * @return la liste vidée.
+	 * @param <E> Type d' éléments de la Liste annonyme
 	 */
 	public static <E> ListeMutable<E> vide() {
 		return new ListeMutable<E>() {

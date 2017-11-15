@@ -37,7 +37,7 @@ public interface File<E> extends Iterable<E> {
 
 	/**
 	 * Ajoute un élément a la queue de la file.
-	 * @param dernierDansFile
+	 * @param dernierDansFile un element de type E
 	 * @return la file qui résulte de l'ajout
 	 */
 	File<E> ajout(E dernierDansFile);
@@ -50,7 +50,7 @@ public interface File<E> extends Iterable<E> {
 
 	/**
 	 * Ajoute en queue une file d'éléments.
-	 * @param secondeFile
+	 * @param secondeFile la seconde file
 	 * @return la file résultant de l'ajout
 	 */
 	File<E> ajout(File<E> secondeFile);

@@ -36,8 +36,7 @@ public class FileMutableImpl<E> implements FileMutable<E>{
 
 	/**
 	 * Permet d'ajouter un element en queue de file
-	 * @param element
-	 * @return
+	 * @param element de type E
 	 */
     @Override
     public void ajouter(E element) {
@@ -53,7 +52,6 @@ public class FileMutableImpl<E> implements FileMutable<E>{
 
     /**
 	 * Retire le premier element de la file
-	 * @return
 	 */
     @Override
     public void retirer() {

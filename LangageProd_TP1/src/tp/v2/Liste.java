@@ -61,7 +61,7 @@ public interface Liste<E> extends Iterable<E> {
 
 	/**
 	 * Inverse les éléments de la liste
-	 * @return
+	 * @return Une liste dont tout les éléments dont inversés par rapport a la Liste mère
 	 */
 	default Liste<E> miroir(){
 		Liste miroir = vide();
@@ -76,7 +76,7 @@ public interface Liste<E> extends Iterable<E> {
 
 	/**
 	 * Fabrique une liste vide
-	 * @param <E>
+	 * @param <E> Types d'lements de la liste annonyme
 	 * @return Une liste vide
 	 */
 	public static <E> Liste<E> vide() {
@@ -97,7 +97,7 @@ public interface Liste<E> extends Iterable<E> {
 	 * Ajout en tête
 	 * @param tete de la nouvelle liste
 	 * @param reste liste des étléments de queue
-	 * @param <E>
+	 * @param <E> Type d' éléments de la liste anonyme
 	 * @return Une nouvelle liste avec l'élément en plus
 	 */
 	public static <E> Liste<E> cons(E tete, Liste<E> reste) {

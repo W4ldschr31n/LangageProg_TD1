@@ -83,7 +83,7 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
 
     /**
      * Ajoute un élément a la fin de la liste
-     * @param dernier
+     * @param dernier nouvel élément de type E
      * @return liste avec un element en plus
      */
     @Override
