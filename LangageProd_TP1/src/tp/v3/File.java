@@ -1,82 +1,103 @@
 package tp.v3;
 
+import java.util.Iterator;
+
 public interface File<E> extends Iterable<E> {
 
-  /**
-   * Accesseur premier élément
-   * @return premier élément de la file
-   */
-  E premier();
-  /**
-   * Accesseur suivants
-   * @return file des éléments suivants
-   */
-  File<E> suivants();
+	/**
+	 * Accesseur premier élément.
+	 * @return premier élément de la file
+	 */
+	E premier();
+	/**
+	 * Accesseur suivants.
+	 * @return file des éléments suivants
+	 */
+	File<E> suivants();
 
-  /**
-   * Asserte si la file est vide
-   * @return true si la file est vide
-   */
-  default boolean estVide() {
-    return this.taille() == 0;
-  }
+	/**
+	 * Asserte si la file est vide.
+	 * @return true si la file est vide
+	 */
+	default boolean estVide() {
+		return this.taille() == 0;
+	}
 
-  /**
-   * Retourne la Taille
-   * @return
-   */
-  int taille();
+	/**
+	 * Retourne la Taille.
+	 * @return la taille de la liste
+	 */
+	int taille();
 
-  /**
-   * Fabrique
-   * @return une instance de File
-   */
-  File<E> creer();
+	/**
+	 * Fabrique une file vide.
+	 * @return une instance de File
+	 */
+	File<E> creer();
 
-  /**
-   * Ajoute un élément a la queue de la file
-   * @param dernierDansFile
-   * @return la file qui résulte de l'ajout
-   */
-  File<E> ajout(E dernierDansFile);
+	/**
+	 * Fabrique une file avec un element en tete
+	 * @return une instance de File*
+	 * @param  dernier un elément de type E
+	 */
+	File<E> creer(E dernier);
 
-  /**
-   * Supprime l'élément de tête
-   * @return la file qui résulte du retrait
-   */
-  File<E> retrait();
+	/**
+	 * Ajoute un élément a la queue de la file.
+	 * @param dernierDansFile un element de type E
+	 * @return la file qui résulte de l'ajout
+	 */
+	default File<E> ajout(E dernierDansFile){
+		return creer(dernierDansFile);
+	}
 
-  // ComplexitÃ© O(|secondeFile|)
-  /**
-   * Ajoute une seconde file à la file actuelle.
-   * @param secondeFile La file à ajouter à la file actuelle.
-   * @return la file avec les nouveaux éléments ajoutés.
-   */
-  @Override
-  default File<E> ajout(File<E> secondeFile) {
-    for(E e : secondeFile){
-      this.ajout(e);
-    }
-    return this;
-  }
+	/**
+	 * Supprime l'élément de tête.
+	 * @return la file qui résulte du retrait
+	 */
+	File<E> retrait();
 
-  default String representation() {
-    String representation = "[/]";
-    if(!estVide()){
-      representation += "["+premier().toString()+"]"+suivants().representation();
-    }
-    return representation;
-  }
+	/**
+	 * Ajoute en queue une file d'éléments.
+	 * @param secondeFile la seconde file
+	 * @return la file résultant de l'ajout
+	 */
+	default File<E> ajout(File<E> secondeFile){
+		for(E e : secondeFile){
+			this.ajout(e);
+		}
+		return this;
+	}
 
-  /**
-   * Compare l'égalitée de deux file
-   * Pré cond: Les éléments de type E doivent définir une méthode equals  qui ait du sens
-   * @param file
-   * @return
-   */
-  default boolean estEgal(File<E> file){
-    return premier().equals(file.premier()) && suivants().estEgal(file.suivants());
-  }
+	/**
+	*Affiche la file.
+	* @return rep la representation de la file
+	*/
+	default String representation() {
+		Iterator<E> it = iterator();
+		String rep = "";
+		while (it.hasNext()){
+			rep += "["+it.next()+"]";
+		}
+		return rep+"[/]";
+	}
+
+	/**
+	 * Compare l'égalitée de deux file.
+	 * Pré cond: Les éléments de type E doivent définir une méthode equals  qui ait du sens
+	 * @param file la file a tester
+	 * @return un booleen (true) si les files sont egales sinon (false)
+	 */
+	default boolean estEgal(File<E> file){
+		return premier().equals(file.premier()) && suivants().estEgal(file.suivants());
+	}
+
+
+	/**
+	 * Crée une copie de la file actuelle.
+	 * @return	une nouvelle instance de file identique à celle-ci.
+	 */
+	File<E> creerCopie();
 
 
 

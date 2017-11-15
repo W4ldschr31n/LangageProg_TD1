@@ -1,129 +1,98 @@
 package tp.v3;
 
+
 import java.util.Iterator;
-import java.util.LinkedList;
 
-public class FileMutableImpl<E> implements FileMutable<E>{
-  private E premier;
-  private FileMutable<E> suivants;
-  private int taille;
+public class FileMutableImpl<E> implements FileMutable<E> {
+	private E fin;
+	private ListeMutable<E> liste;
 
-  public FileMutableImpl(){
-    this.taille=0;
-  }
-
-  @Override
-  public E premier() {
-    return this.premier;
-  }
-
-//  @Override
-//  public FileMutable<E> suivants() {
-//    return this.suivants;
-//  }
-
-  @Override
-  public int taille() {
-    return this.taille;
-  }
+	/**
+	 * Construit une File vide
+	 */
+	public FileMutableImpl(){
+	    this.fin = null;
+	    this.liste = ListeMutable.vide();
+    }
 
 
     /**
-     * Permet d'ajouter un element en queue de file
-     * @param dernierDansFile
-     * @return
+     * Retourne l'element en tete de la file
+     * @return le premier element de la file
      */
+	@Override
+	public E premier() {
+		return this.liste.tete();
+	}
+
+	/**
+	 *  Taille de la file
+	 * @return la taille
+	 */
+	@Override
+	public int taille() {
+		return this.liste.taille();
+	}
+
+	/**
+	 * Permet d'ajouter un element en queue de file
+	 * @param element de type E
+	 */
     @Override
-    public FileMutable<E> ajout(E dernierDansFile) {
-  //    Iterator it = iterator();
-  //    FileMutable<E> fileCourante = this;
-  //    while (it.hasNext()){
-  //      it.next();
-  //      fileCourante = fileCourante.suivants();
-  //    }
-  //    FileMutable<E> derniere = creer();
-  //    fileCourante.
-      return null;
+    public FileMutableImpl<E> creer(E element) {
+
+        if(estVide()){
+            this.liste = ListeMutable.cons(element,this.liste);
+        }
+        else{
+            this.liste = (ListeMutable<E>) ListeMutable.cons(element, (ListeMutable<E>) this.liste.miroir()).miroir();
+        }
+        this.fin = element;
+
+        return this;
     }
 
     /**
-     * Retire le premier elements de la file
-     * @return
-     */
+	 * Retire le premier element de la file
+	 */
     @Override
-    public FileMutable<E> retrait() {
-      this.premier=suivants().premier();
-      this.suivants=suivants().suivants();
-      return this;
+    public void retirer() {
+        if(estVide())
+            throw new UnsupportedOperationException();
+        this.liste = this.liste.reste();
     }
 
+	/**
+  * Permet de récupérer un itérateur de la file.
+  * @return un iterateur qui va itérer sur la file
+  */
+	@Override
+	public Iterator<E> iterator() {
+		return new IterateurListe<E>(this.liste);
+	}
 
-    @Override
-    public FileMutable<E> ajout(File secondeFile) {
-      ajouter(secondeFile);
-      return this;
-    }
+	/**
+	 * Crée une nouvelle file.
+	 * @return	La file créée.
+	 */
+	@Override
+	public FileMutable<E> creer() {
+		return new FileMutableImpl();
+	}
 
-    @Override
-    public Iterator<E> iterator() {
-      LinkedList<E> it = new LinkedList<>();
-      it.add(this.premier);
-      FileMutable<E> suiv = this.suivants;
-      while (suiv !=null){
-        it.add(suiv.premier());
-        suiv = suiv.suivants();
-      }
-      System.out.println(it.toString());
-      return it.iterator();
-    }
+	/**
+	 * Crée une copie de la file actuelle.
+	 * @return	une nouvelle instance de file identique à celle-ci.
+	 */
+	@Override
+	public FileMutable<E> creerCopie() {
+		Iterator<E> it = this.iterator();
+		FileMutable<E> copie = creer();
+		while (it.hasNext()){
+			copie.ajout(it.next());
+		}
+		return copie;
+	}
 
-    /**
-     * Permet d'ajouter le premier element
-     * @param element
-     */
-    @Override
-    public void ajouter(E element) {
-      this.premier=element;
-    }
-
-  /**
-   * Retire le premeir element
-   */
-  @Override
-  public void retirer() {
-    retrait();
-  }
-
-  @Override
-  public FileMutable<E> creer() {
-    return new FileMutableImpl();
-  }
-
-  @Override
-  public FileMutable<E> creerCopie() {
-    Iterator<E> it = this.iterator();
-    FileMutable<E> copie = creer();
-    while (it.hasNext()){
-      copie.ajout(it.next());
-    }
-    return copie;
-  }
-
-  @Override
-  public void ajouter(File<E> secondeFile) {
-    Iterator<E> it = this.iterator();
-    while (it.hasNext()){
-      ajout(it.next());
-    }
-  }
-  public String toString(){
-    Iterator it = iterator();
-    String rep = "(";
-    while (it.hasNext()){
-      rep+=it.next()+",";
-    }
-    rep.substring(0, rep.length());
-    return rep+=")";
-  }
 
 }
