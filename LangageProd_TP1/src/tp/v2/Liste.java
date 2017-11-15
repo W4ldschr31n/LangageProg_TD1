@@ -120,7 +120,10 @@ public interface Liste<E> extends Iterable<E> {
 		};
 	}
 
-
+	/**
+	*Affiche la file.
+	* @return rep la representation de la file
+	*/
 	default public String representer(){
 		Iterator<E> it = iterator();
 		String rep = "";
@@ -130,5 +133,5 @@ public interface Liste<E> extends Iterable<E> {
 		return rep+"[/]";
 	}
 
-	
+
 }

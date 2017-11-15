@@ -49,6 +49,10 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
         }
     }
 
+    /**
+  	 * Crée une copie de la file actuelle.
+  	 * @return	une nouvelle instance de file identique à celle-ci.
+  	 */
     @Override
     public FileImmutable<E> creerCopie() {
         Iterator<E> it = this.iterator();
@@ -68,7 +72,10 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
         return debut.taille();
     }
 
-
+    /**
+  	 * Fabrique une file avec un element en tete
+  	 * @return une instance de File
+  	 */
     @Override
     public FileImmutable<E> creer() {
         return new FileImmutableImpl<>();
@@ -84,7 +91,10 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
         return new FileImmutableImpl<E>(Liste.cons(dernier,this.debut.miroir()).miroir(),Liste.cons(dernier,this.fin));
     }
 
-
+    /**
+    * Permet de récupérer un itérateur de la file.
+    * @return un iterateur qui va itérer sur la file
+    */
     @Override
     public Iterator<E> iterator() {
         return new IterateurListe<E>(this.debut);
