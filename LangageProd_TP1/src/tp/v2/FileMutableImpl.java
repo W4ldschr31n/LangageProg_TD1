@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class FileMutableImpl<E> implements FileMutable<E>{
-	private E fin;
+	private ListeMutable<E> fin;
 	private ListeMutable<E> liste;
 
 	/**
@@ -45,9 +45,11 @@ public class FileMutableImpl<E> implements FileMutable<E>{
             this.liste = ListeMutable.cons(element,this.liste);
         }
         else{
-            this.liste = ListeMutable.cons(element,this.liste.miroir()).miroir();
+        	ListeMutable nouvelEL = ListeMutable.cons(element,this.fin.reste());
+        	this.liste.changerReste(nouvelEL);
+			this.fin = nouvelEL;
         }
-        this.fin = element;
+
     }
 
     /**
