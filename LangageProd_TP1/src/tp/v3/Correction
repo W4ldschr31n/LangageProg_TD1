@@ -1,0 +1,16 @@
+Liste<K extends Liste<K,E>,E>
+==> double paramétrage des fonctions
+permet de specialiser les type de retour des fonction
+Dans l'interface public K mamethode(E truc)
+ex: defaut K reste();
+
+default K miroir(){
+		Iterator<E> it = this.iterator();
+		K miroir = cree();
+		while(it.hasNext()){
+
+			miroir = cree(it.next(), miroir);
+		}
+		return miroir;
+
+	}
