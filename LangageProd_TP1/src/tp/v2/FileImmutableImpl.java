@@ -23,6 +23,10 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
     private FileImmutableImpl(Liste debut, Liste fin){
         this.debut =debut;
         this.fin = fin;
+        if (this.debut.estVide()){
+            this.debut = fin.miroir();
+            this.fin = Liste.vide();
+        }
     }
 
     /**
@@ -40,12 +44,11 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
      */
     @Override
     public FileImmutable<E> suivants() {
-        //Liste reste = this.fin.reste().miroir().reste().miroir();
-        if(!this.debut.casVide()){
-            return new FileImmutableImpl<E>(this.debut.reste(),this.debut.reste().miroir());
+        if(this.estVide()){
+            throw new UnsupportedOperationException();
         }
         else{
-            return creer();
+            return new  FileImmutableImpl<>(this.debut.reste(),this.fin);
         }
     }
 
@@ -55,12 +58,7 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
   	 */
     @Override
     public FileImmutable<E> creerCopie() {
-        Iterator<E> it = this.iterator();
-        FileImmutable<E> copie = creer();
-        while (it.hasNext()){
-            copie = copie.ajout(it.next());
-        }
-        return copie;
+       return new FileImmutableImpl<>(this.debut,this.fin);
     }
 
     /**
@@ -69,7 +67,7 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
      */
     @Override
     public int taille() {
-        return debut.taille();
+        return debut.taille()+fin.taille();
     }
 
     /**
@@ -88,7 +86,7 @@ public class FileImmutableImpl<E> implements FileImmutable<E> {
      */
     @Override
     public FileImmutable<E> creer(E dernier) {
-        return new FileImmutableImpl<E>(Liste.cons(dernier,this.debut.miroir()).miroir(),Liste.cons(dernier,this.fin));
+        return new FileImmutableImpl<E>(this.debut,Liste.cons(dernier,this.fin));
     }
 
     /**
