@@ -13,7 +13,7 @@ public interface FileMutable<E> extends
 	default void changerReste(FileMutable<E> reste) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	default void changerTete(E tete) {
 		throw new UnsupportedOperationException();
 	}
@@ -26,7 +26,7 @@ public interface FileMutable<E> extends
 		suivants.retirer();
 		return suivants;
 	}
-	
+
 	/*
 	 * Fabriques.
 	 */
@@ -47,17 +47,13 @@ public interface FileMutable<E> extends
 
 	}
 
-	
+
 	/*
 	 * Services
 	 */
 
 	public static <E> FileMutable<E> vide() {
 		return new FileMutable<E>() {
-			@Override
-			public void ajouter(E element) {
-				//TODO?????
-			}
 
 			@Override
 			public void retirer() {
@@ -82,7 +78,7 @@ public interface FileMutable<E> extends
 
 		};
 	}
-	
+
 	public static <E> FileMutable<E> cons(E t, FileMutable<E> r) {
 		return new FileMutable<E>() {
 			private E tete = t;
