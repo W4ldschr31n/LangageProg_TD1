@@ -1,4 +1,8 @@
 Couche haute (services) : File => FileImmutable + FileMutable
 
 Couche basse (etat/accesseurs) :  interfaces EtatFile => EtatImmutable + EtatMutable
-implementation: avexc des classes anonymes pr aggr�gation
+implementation: avexc des classes anonymes pr aggr�gation
+
+
+==> on a décidé que les états cerait vide et cons finalement;
+On le déclare en static dans les interfaces et on apelle ses méthodes

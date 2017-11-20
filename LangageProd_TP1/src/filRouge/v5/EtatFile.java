@@ -1,6 +1,9 @@
 package filRouge.v5;
 
+import java.util.Iterator;
+
 public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesurable{
+
 
     /**
      * Accesseurs
@@ -11,27 +14,23 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
     default boolean estVide(){
         return true;
     }
+    int taille();
+
+    @Override
+    Iterator<E> iterator();
 
     /**
      * Fabriques
      */
-    K creer();
-    @SuppressWarnings("unchecked")
-    default K sujet(){
-        return (K)this;
+
+    static EtatFileVide creerVide(){
+        return  EtatFileVide.creer();
+    }
+    static EtatFileCons creerCons(E el, K File){
+        return  EtatFileCons.creer(E el, K File);
     }
 
-    /**
-     * Services
-     */
-    K ajout(E dernierDansFile); // Ajout en fin
-    K retrait(); // Retrait du premier element
-    default K ajout(K secondeFile) { // Ajout de la seconde file en fin de file
-        K clone = sujet();
-        for(E element:secondeFile){
-            clone.ajout(element);
-        }
-        return clone;
-    }
+
+
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.11" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <interface id="1" language="java" name="filRouge.v5.IdentifiableParIteration" project="modularite" 
-    file="/modularite/src/filRouge/v5/IdentifiableParIteration.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="1" language="java" name="filRouge.filRouge.v5.IdentifiableParIteration" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/IdentifiableParIteration.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="510" y="480"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="2" language="java" name="filRouge.v5.Identifiable" project="modularite" 
-    file="/modularite/src/filRouge/v5/Identifiable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="2" language="java" name="filRouge.filRouge.v5.Identifiable" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/Identifiable.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="506" y="65"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="3" language="java" name="filRouge.v5.Mesurable" project="modularite" 
-    file="/modularite/src/filRouge/v5/Mesurable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="3" language="java" name="filRouge.filRouge.v5.Mesurable" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/Mesurable.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="667" y="63"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="5" language="java" name="filRouge.v5.RepresentableParIteration" project="modularite" 
-    file="/modularite/src/filRouge/v5/RepresentableParIteration.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="5" language="java" name="filRouge.filRouge.v5.RepresentableParIteration" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/RepresentableParIteration.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="122" y="476"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="6" language="java" name="filRouge.v5.Representable" project="modularite" 
-    file="/modularite/src/filRouge/v5/Representable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="6" language="java" name="filRouge.filRouge.v5.Representable" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/Representable.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="97" y="57"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

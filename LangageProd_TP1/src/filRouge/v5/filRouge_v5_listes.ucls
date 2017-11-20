@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.11" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <interface id="1" language="java" name="filRouge.v5.Liste" project="modularite" 
-    file="/modularite/src/filRouge/v5/Liste.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="1" language="java" name="filRouge.filRouge.v5.Liste" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/Liste.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="485" y="302"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="2" language="java" name="filRouge.v5.ListeImmutable" project="modularite" 
-    file="/modularite/src/filRouge/v5/ListeImmutable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="2" language="java" name="filRouge.filRouge.v5.ListeImmutable" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/ListeImmutable.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="147" y="732"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="3" language="java" name="filRouge.v5.ListeMutable" project="modularite" 
-    file="/modularite/src/filRouge/v5/ListeMutable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="3" language="java" name="filRouge.filRouge.v5.FileMutable" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/ListeMutable.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="887" y="756"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="4" language="java" name="filRouge.v5.IdentifiableParIteration" project="modularite" 
-    file="/modularite/src/filRouge/v5/IdentifiableParIteration.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="4" language="java" name="filRouge.filRouge.v5.IdentifiableParIteration" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/IdentifiableParIteration.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="514" y="537"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="5" language="java" name="filRouge.v5.Mesurable" project="modularite" 
-    file="/modularite/src/filRouge/v5/Mesurable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="5" language="java" name="filRouge.filRouge.v5.Mesurable" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/Mesurable.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="634" y="56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="7" language="java" name="filRouge.v5.RepresentableParIteration" project="modularite" 
-    file="/modularite/src/filRouge/v5/RepresentableParIteration.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="7" language="java" name="filRouge.filRouge.v5.RepresentableParIteration" project="modularite"
+    file="/modularite/src/filRouge/filRouge.v5/RepresentableParIteration.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="520" y="671"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

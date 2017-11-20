@@ -1,5 +1,7 @@
 package filRouge.v5;
 
+import java.util.Iterator;
+
 public interface FileImmutable<E> extends
         File<FileImmutable<E>, E>,
         IdentifiableParIteration<FileImmutable<?>, E>,
@@ -33,9 +35,40 @@ public interface FileImmutable<E> extends
 
     /*
      * Fabriques statiques.
-     *//*
+     */
     public static <E> FileImmutable<E> vide() {
         return new FileImmutable<E>() {
+            private EtatFileVide<K,E> etat = EtatFile.creerVide();
+
+            @Override
+            public Iterator<E> iterator() {
+                return etat.iterator();
+            }
+            @Override
+            public int taille() {
+                return etat.taille();
+            }
+
+            @Override
+            public E premier() {
+                return null;
+            }
+
+            @Override
+            public FileImmutable<E> suivants() {
+                return null;
+            }
+
+            @Override
+            public FileImmutable<E> creer() {
+                return null;
+            }
+
+            @Override
+            public FileImmutable<E> creer(E e) {
+                return null;
+            }
+
 
             @Override
             public boolean equals(Object obj){
@@ -81,4 +114,3 @@ public interface FileImmutable<E> extends
 
 
 }
-*/
