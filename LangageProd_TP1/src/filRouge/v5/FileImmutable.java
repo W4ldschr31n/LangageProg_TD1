@@ -38,7 +38,7 @@ public interface FileImmutable<E> extends
      */
     public static <E> FileImmutable<E> vide() {
         return new FileImmutable<E>() {
-            private EtatFileVide<K,E> etat = EtatFile.creerVide();
+            private EtatFile<K,E> etat;
 
             @Override
             public Iterator<E> iterator() {

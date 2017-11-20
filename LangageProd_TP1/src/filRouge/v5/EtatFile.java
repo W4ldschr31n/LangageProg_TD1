@@ -19,18 +19,5 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
     @Override
     Iterator<E> iterator();
 
-    /**
-     * Fabriques
-     */
-
-    static EtatFileVide creerVide(){
-        return  EtatFileVide.creer();
-    }
-    static EtatFileCons creerCons(E el, K File){
-        return  EtatFileCons.creer(E el, K File);
-    }
-
-
-
 
 }
