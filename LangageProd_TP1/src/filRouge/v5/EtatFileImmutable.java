@@ -2,10 +2,10 @@ package filRouge.v5;
 
 import java.util.Iterator;
 
-public interface EtatFileImmutable<E> extends EtatFile<EtatFileImmutable<E>,E>{
+public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,E>{
     
-	public static <E> EtatFileImmutable creerVide(){
-		return new EtatFileImmutable<E>(){
+	public static <K,E> EtatFileImmutable creerVide(){
+		return new EtatFileImmutable<K,E>(){
 
 			@Override
 			public E premier() {
@@ -14,7 +14,7 @@ public interface EtatFileImmutable<E> extends EtatFile<EtatFileImmutable<E>,E>{
 			}
 
 			@Override
-			public EtatFileImmutable<E> suivants() {
+			public EtatFileImmutable<K, E> suivants() {
 				// TODO Auto-generated method stub
 				return null;
 			}
@@ -30,12 +30,13 @@ public interface EtatFileImmutable<E> extends EtatFile<EtatFileImmutable<E>,E>{
 				// TODO Auto-generated method stub
 				return null;
 			}
+			
 			
 		};
 	}
 	
-	public static <E> EtatFileImmutable creerCons(){
-		return new EtatFileImmutable<E>(){
+	public static <K,E> EtatFileImmutable creerCons(){
+		return new EtatFileImmutable<K,E>(){
 
 			@Override
 			public E premier() {
@@ -44,7 +45,7 @@ public interface EtatFileImmutable<E> extends EtatFile<EtatFileImmutable<E>,E>{
 			}
 
 			@Override
-			public EtatFileImmutable<E> suivants() {
+			public EtatFileImmutable<K, E> suivants() {
 				// TODO Auto-generated method stub
 				return null;
 			}
@@ -60,7 +61,7 @@ public interface EtatFileImmutable<E> extends EtatFile<EtatFileImmutable<E>,E>{
 				// TODO Auto-generated method stub
 				return null;
 			}
-			
+
 		};
 	}
 
