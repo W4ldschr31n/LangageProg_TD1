@@ -1,0 +1,4 @@
+Couche haute (services) : File => FileImmutable + FileMutable
+
+Couche basse (etat/accesseurs) :  interfaces EtatFile => EtatImmutable + EtatMutable
+implementation: avexc des classes anonymes pr aggrégation

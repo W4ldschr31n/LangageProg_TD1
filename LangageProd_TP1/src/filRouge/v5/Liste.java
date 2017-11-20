@@ -18,11 +18,11 @@ public interface Liste<K extends Liste<K, E>, E> extends Iterable<E>, Mesurable 
 	default boolean casCons() {
 		return false;
 	}
-	default  boolean estVide(){
+	default public boolean estVide(){
 		return this.taille() == 0;
 	}
 	@Override
-	default  int taille(){
+	default public int taille(){
 		return 0;
 	}
 	/*
@@ -48,17 +48,6 @@ public interface Liste<K extends Liste<K, E>, E> extends Iterable<E>, Mesurable 
 			r = r.creer(e);
 		}
 		return r;
-	}
-
-	K ajout(E dernierDansFile); // Ajout en fin
-	K retrait(); // Retrait de premier élément
-	// Ajout de la seconde file en fin de file
-	default K ajout(K secondeFile){
-		K somme = creer();
-		for(E element:secondeFile){
-			somme.ajout(element);
-		}
-		return somme;
 	}
 	
 }

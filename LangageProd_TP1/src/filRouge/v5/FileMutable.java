@@ -1,64 +1,54 @@
 package filRouge.v5;
 
 public interface FileMutable<E> extends
-	Liste<FileMutable<E>, E>,
+	File<FileMutable<E>, E>,
 	IdentifiableParIteration<FileMutable<?>, E>,
-	RepresentableParIteration<E>
-{
+	RepresentableParIteration<E> {
 
 	/*
 	 * Accesseurs.
 	 */
 
-	default void changerReste(FileMutable<E> reste) {
-		throw new UnsupportedOperationException();
-	}
-
-	default void changerTete(E tete) {
-		throw new UnsupportedOperationException();
-	}
-
 	void ajouter(E element);
 	void retirer();
 
-	default FileMutable<E> suivants(){
-		FileMutable suivants = creerCopie();
-		suivants.retirer();
-		return suivants;
+	FileMutable<E> getReste(); // Les elements suivants
+
+	@Override
+	default FileMutable<E> suivants(){ // Une copie des elements suivants
+		return getReste().creerCopie();
 	}
+
 
 	/*
 	 * Fabriques.
 	 */
-	@Override
-	default FileMutable<E> creer() {
-		return vide();
-	}
-	@Override
-	default FileMutable<E> creer(E e) {
-		return cons(e, this);
-	}
 
-	//copie de la file this
-	default FileMutable<E> creerCopie(){
-		FileMutable copie = creer();
-		copie.ajout(this);
+	FileMutable<E> creerCopie(); // Fabrique realisant une copie de la file
+
+	/**
+	 * Services
+	 */
+	@Override
+	default FileMutable<E> retrait(){
+		return suivants();
+	}
+	@Override
+	default FileMutable<E> ajout(E dernier){
+		FileMutable<E> copie = creerCopie();
+		copie.ajouter(dernier);
 		return copie;
-
 	}
 
-
+	void ajouter(FileMutable<E> secondeFile);
+}
+	
 	/*
 	 * Services
 	 */
-
+/*Fabriques statiques
 	public static <E> FileMutable<E> vide() {
 		return new FileMutable<E>() {
-
-			@Override
-			public void retirer() {
-				throw new UnsupportedOperationException();
-			}
 
 			@Override
 			public boolean casVide(){
@@ -79,6 +69,7 @@ public interface FileMutable<E> extends
 		};
 	}
 
+	
 	public static <E> FileMutable<E> cons(E t, FileMutable<E> r) {
 		return new FileMutable<E>() {
 			private E tete = t;
@@ -151,3 +142,4 @@ public interface FileMutable<E> extends
 
 
 }
+*/

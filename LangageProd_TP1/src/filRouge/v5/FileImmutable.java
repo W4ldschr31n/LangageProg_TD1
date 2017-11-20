@@ -3,39 +3,40 @@ package filRouge.v5;
 public interface FileImmutable<E> extends
         File<FileImmutable<E>, E>,
         IdentifiableParIteration<FileImmutable<?>, E>,
-        RepresentableParIteration<E>
-{
+        RepresentableParIteration<E> {
 
-	/*
-	 * Accesseurs.
-	 */
 	/*
 	 * Fabriques
 	 */
 
-    @Override
+    /*@Override
     default FileImmutable<E> creer() {
         return vide();
-    }
-    @Override
-    default FileImmutable<E> creer(E e) {
-        return cons(e, this);
-    }
+    }*/
+
+    FileImmutable<E> creer(E e); // Fabrique d'une file formee de la file cible et
+    // d'un nouveau dernier element
 
 	/*
 	 * Services
 	 */
+    @Override
+    default FileImmutable<E> retrait(){
+        return suivants();
+    }
 
+    @Override
+    default FileImmutable<E> ajout(E dernier){
+        return creer(dernier);
+    }
+}
 
     /*
      * Fabriques statiques.
-     */
+     *//*
     public static <E> FileImmutable<E> vide() {
         return new FileImmutable<E>() {
-            @Override
-            public boolean casVide(){
-                return true;
-            }
+
             @Override
             public boolean equals(Object obj){
                 if(!(obj instanceof FileImmutable<?>))
@@ -54,10 +55,6 @@ public interface FileImmutable<E> extends
         return new FileImmutable<E>() {
             private FileImmutable<E> reste = r;
             private int taille = r.taille() + 1;
-            @Override
-            public boolean casCons(){
-                return true;
-            }
             public E tete() {
                 return t;
             }
@@ -84,3 +81,4 @@ public interface FileImmutable<E> extends
 
 
 }
+*/
