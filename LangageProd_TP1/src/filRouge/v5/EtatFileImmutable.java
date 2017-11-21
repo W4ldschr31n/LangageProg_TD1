@@ -42,7 +42,12 @@ public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,
 		    	}
 		    }
 
-		    @Override
+			@Override
+			public EtatFile ajouter(E element) {
+				return EtatFileImmutable.cons(element,this);
+			}
+
+			@Override
 		    public int taille() {
 		        return liste.taille();
 		    }
@@ -75,6 +80,12 @@ public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,
 			@Override
 			public EtatFileImmutable<K, E> suivants() {
 				throw new UnsupportedOperationException();
+			}
+
+			@Override
+			public EtatFile ajouter(E element) {
+
+				return EtatFileImmutable.cons(element,this);
 			}
 
 			@Override

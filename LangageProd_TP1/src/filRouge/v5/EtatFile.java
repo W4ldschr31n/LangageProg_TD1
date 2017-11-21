@@ -11,6 +11,7 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
 
     E premier(); //Premier de la file
     K suivants(); // Ses suivants
+    EtatFile ajouter(E element);
     default boolean estVide(){
         return true;
     }

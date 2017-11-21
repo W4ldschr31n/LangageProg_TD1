@@ -27,6 +27,10 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 			public Iterator<E> iterator() {
 				return liste.iterator();
 			}
+			@Override
+			public EtatFile ajouter(E element) {
+				return EtatFileMutable.cons(element,this);
+			}
 
 
 
@@ -44,6 +48,11 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 				}
 				liste = liste.creer(e);
 				liste = liste.miroir();
+			}
+			@Override
+			public EtatFile ajouter(E element) {
+				liste.creer(element);
+				return this;
 			}
 
 			@Override
@@ -85,6 +94,8 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 			public boolean estVide(){
 				return liste.casVide();
 			}
+
+
 
 		};
 	}
