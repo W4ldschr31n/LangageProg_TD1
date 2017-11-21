@@ -4,6 +4,13 @@ import java.util.Iterator;
 
 public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 
+	default EtatFileMutable<K,E> creer(E e, EtatFileMutable<K,E> etat){
+		return cons(e, etat);
+	}
+	default EtatFileMutable<K,E> creer(){
+		return vide();
+	}
+
 	static <K,E> EtatFileMutable<K,E> vide(){
 		return new EtatFileMutable<K,E>(){
 			private ListeMutable<E> liste = ListeMutable.vide();
@@ -28,7 +35,7 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 				return liste.iterator();
 			}
 			@Override
-			public EtatFile ajouter(E element) {
+			public EtatFileMutable<K, E> ajouter(E element) {
 				return EtatFileMutable.cons(element,this);
 			}
 
@@ -50,7 +57,7 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 				liste = liste.miroir();
 			}
 			@Override
-			public EtatFile ajouter(E element) {
+			public EtatFileMutable<K, E> ajouter(E element) {
 				liste.creer(element);
 				return this;
 			}

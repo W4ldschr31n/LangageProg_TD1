@@ -41,6 +41,11 @@ public class ImplementationEtatFileImmutable<K,E> implements EtatFileImmutable<K
     }
 
     @Override
+    public EtatFileImmutable<K, E> ajouter(E e) {
+        return null;
+    }
+
+    @Override
     public int taille() {
         return liste.taille();
     }

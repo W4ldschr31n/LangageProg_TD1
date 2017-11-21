@@ -31,6 +31,48 @@ public interface FileImmutable<E> extends
     /*
      * Fabriques statiques.
      */
+    static <E> FileImmutable<E> creerAvecEtat(EtatFile<? extends EtatFile, E> etatFile){
+        return new FileImmutable<E>() {
+            private EtatFile<? extends EtatFile, E> etat = etatFile;
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public FileImmutable<E> creer(E e) {
+                return  null;//creerAvecEtat(etat.creer(e, etat));
+            }
+
+            @Override
+            public E premier() {
+                return etat.premier();
+            }
+
+            @Override
+            public FileImmutable<E> suivants() {
+                return creerAvecEtat(etat.suivants());
+            }
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public FileImmutable<E> creer() {
+                return creerAvecEtat(EtatFileMutable.vide());
+            }
+
+            @Override
+            public int taille() {
+                return etat.taille();
+            }
+
+            @Override
+            public Iterator<E> iterator() {
+                return etat.iterator();
+            }
+
+            public String toString(){
+                return etat.toString();
+            }
+        };
+    }
+
     static <E> FileImmutable<E> creerAvecEtatMutable(EtatFileMutable<EtatFileMutable, E> etatFile){
         return new FileImmutable<E>() {
             private EtatFileMutable<EtatFileMutable, E> etat = etatFile;
@@ -38,7 +80,7 @@ public interface FileImmutable<E> extends
             @Override
             @SuppressWarnings("unchecked")
             public FileImmutable<E> creer(E e) {
-                return  creerAvecEtatMutable(EtatFileMutable.creerCons(e, etat));
+                return  creerAvecEtatMutable(EtatFileMutable.cons(e, etat));
             }
 
             @Override
@@ -54,7 +96,7 @@ public interface FileImmutable<E> extends
             @Override
             @SuppressWarnings("unchecked")
             public FileImmutable<E> creer() {
-                return creerAvecEtatMutable(EtatFileMutable.creerVide());
+                return creerAvecEtatMutable(EtatFileMutable.vide());
             }
 
             @Override

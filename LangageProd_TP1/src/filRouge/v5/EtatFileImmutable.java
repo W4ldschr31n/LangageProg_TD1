@@ -5,8 +5,12 @@ import java.util.Iterator;
 
 public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,E>{
 //	
-//	 EtatFileImmutable<K,E> cons(E e, EtatFileImmutable<? extends EtatFileImmutable, E> etat); 
-//	 EtatFileImmutable<K,E> vide(); 
+	 default EtatFileImmutable<K,E> creer(E e, EtatFileImmutable<K,E> etat){
+	 	return cons(e, etat);
+	 }
+	 default EtatFileImmutable<K,E> creer(){
+	 	return vide();
+	 }
     
 	static <K,E> EtatFileImmutable<K,E> cons(E e, EtatFileImmutable<K,E> etat){
 		return new EtatFileImmutable<K,E>(){
@@ -43,7 +47,7 @@ public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,
 		    }
 
 			@Override
-			public EtatFile ajouter(E element) {
+			public EtatFileImmutable<K,E> ajouter(E element) {
 				return EtatFileImmutable.cons(element,this);
 			}
 
@@ -83,7 +87,7 @@ public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,
 			}
 
 			@Override
-			public EtatFile ajouter(E element) {
+			public EtatFileImmutable<K,E> ajouter(E element) {
 
 				return EtatFileImmutable.cons(element,this);
 			}
