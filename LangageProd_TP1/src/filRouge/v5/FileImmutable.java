@@ -80,7 +80,7 @@ public interface FileImmutable<E> extends
             @Override
             @SuppressWarnings("unchecked")
             public FileImmutable<E> creer(E e) {
-                return  creerAvecEtatImmutable(etat.cons(e, etat));
+                return  creerAvecEtatImmutable(EtatFileImmutable.cons(e, etat));
             }
 
             @Override
@@ -96,7 +96,7 @@ public interface FileImmutable<E> extends
             @Override
             @SuppressWarnings("unchecked")
             public FileImmutable<E> creer() {
-                return creerAvecEtatImmutable(etat.vide());
+                return creerAvecEtatImmutable(EtatFileImmutable.vide());
             }
 
             @Override
