@@ -59,17 +59,18 @@ public interface FileParListeMutable<E> {
 
 			@Override
 			public void ajouter(FileParListeMutable<E> secondeFile) {
-				for(E element : secondeFile){
+				/*for(E element : secondeFile){
 					ajouter(element);
-				}
+				}*/
 			}
 
 			@Override
 			public FileParListeMutable<E> miroir() {
-				FileParListeMutable<E> miroir = creer();
+				/*FileParListeMutable<E> miroir = creer();
 				for(E element : miroir){
 					miroir.creer(e);
-				}
+				}*/
+				return null;
 			}
 
 			@Override
@@ -101,7 +102,8 @@ public interface FileParListeMutable<E> {
 			public FileParListeMutable<E> creer(E dernierElement) {
 				FileParListeMutable<E> nouveau = cons();
 				nouveau.ajouter(dernierElement);
+				return nouveau;
 			}
-		}
+		};
 	}
 }

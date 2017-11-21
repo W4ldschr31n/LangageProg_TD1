@@ -19,5 +19,9 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
     @Override
     Iterator<E> iterator();
 
+    default String representer(){
+        return this.toString();
+    }
+
 
 }

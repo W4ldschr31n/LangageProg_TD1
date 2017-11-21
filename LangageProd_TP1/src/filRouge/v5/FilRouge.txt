@@ -1,8 +1,20 @@
 Couche haute (services) : File => FileImmutable + FileMutable
 
+deux implementations: une par representation d'etat
+
 Couche basse (etat/accesseurs) :  interfaces EtatFile => EtatImmutable + EtatMutable
-implementation: avexc des classes anonymes pr aggr�gation
+implementation: avec des classes heritant des interfaces
 
 
-==> on a décidé que les états cerait vide et cons finalement;
+
 On le déclare en static dans les interfaces et on apelle ses méthodes
+
+exemple avec File Immutable:
+Interface FileImmutable avec static creerAvecEtatImmutable
+renvoie une file qui se comporte de manière immutable en deleguant à une instance de EtatFileImmutable
+EtatFileImmutable : implémentée par ImplementationEtatFileImmutable
+Pour tester: on créer d'abord un état (donc ImplementationEtatFileImmutable)
+Ensuite on crée une file avec l'etat en parametre
+Puis on appelle les services de la file
+Ça marche
+P.A.P.

@@ -11,10 +11,6 @@ public interface FileImmutable<E> extends
 	 * Fabriques
 	 */
 
-    /*@Override
-    default FileImmutable<E> creer() {
-        return vide();
-    }*/
 
     FileImmutable<E> creer(E e); // Fabrique d'une file formee de la file cible et
     // d'un nouveau dernier element
@@ -31,83 +27,90 @@ public interface FileImmutable<E> extends
     default FileImmutable<E> ajout(E dernier){
         return creer(dernier);
     }
-}
 
     /*
      * Fabriques statiques.
      */
-    public static <E> FileImmutable<E> vide() {
+    static <E> FileImmutable<E> creerAvecEtatMutable(EtatFileMutable<EtatFileMutable, E> etatFile){
         return new FileImmutable<E>() {
-            private EtatFile<K,E> etat;
+            private EtatFileMutable<EtatFileMutable, E> etat = etatFile;
 
             @Override
-            public Iterator<E> iterator() {
-                return etat.iterator();
+            @SuppressWarnings("unchecked")
+            public FileImmutable<E> creer(E e) {
+                return  creerAvecEtatMutable(EtatFileMutable.creerCons(e, etat));
             }
+
+            @Override
+            public E premier() {
+                return etat.premier();
+            }
+
+            @Override
+            public FileImmutable<E> suivants() {
+                return creerAvecEtatMutable(etat.suivants());
+            }
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public FileImmutable<E> creer() {
+                return creerAvecEtatMutable(EtatFileMutable.creerVide());
+            }
+
             @Override
             public int taille() {
                 return etat.taille();
             }
 
             @Override
-            public E premier() {
-                return null;
+            public Iterator<E> iterator() {
+                return etat.iterator();
             }
 
-            @Override
-            public FileImmutable<E> suivants() {
-                return null;
-            }
-
-            @Override
-            public FileImmutable<E> creer() {
-                return null;
-            }
-
-            @Override
-            public FileImmutable<E> creer(E e) {
-                return null;
-            }
-
-
-            @Override
-            public boolean equals(Object obj){
-                if(!(obj instanceof FileImmutable<?>))
-                    return false;
-                FileImmutable<?> l = (FileImmutable<?>)obj;
-                return this.estEgal(l);
-            }
-            @Override
-            public String toString() {
-                return this.representation();
+            public String toString(){
+                return etat.toString();
             }
         };
     }
 
-    public static <E> FileImmutable<E> cons(E t, FileImmutable<E> r) {
+    static <E> FileImmutable<E> creerAvecEtatImmutable(EtatFileImmutable<? extends EtatFileImmutable, E> etatFile){
         return new FileImmutable<E>() {
-            private FileImmutable<E> reste = r;
-            private int taille = r.taille() + 1;
-            public E tete() {
-                return t;
+            private EtatFileImmutable<? extends EtatFileImmutable, E> etat = etatFile;
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public FileImmutable<E> creer(E e) {
+                return  creerAvecEtatImmutable(etat.cons(e, etat));
             }
-            public FileImmutable<E> reste() {
-                return this.reste;
+
+            @Override
+            public E premier() {
+                return etat.premier();
             }
+
+            @Override
+            public FileImmutable<E> suivants() {
+                return creerAvecEtatImmutable(etat.suivants());
+            }
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public FileImmutable<E> creer() {
+                return creerAvecEtatImmutable(etat.vide());
+            }
+
             @Override
             public int taille() {
-                return this.taille;
+                return etat.taille();
             }
+
             @Override
-            public boolean equals(Object obj){
-                if(!(obj instanceof FileImmutable<?>))
-                    return false;
-                FileImmutable<?> l = (FileImmutable<?>)obj;
-                return this.estEgal(l);
+            public Iterator<E> iterator() {
+                return etat.iterator();
             }
-            @Override
-            public String toString() {
-                return this.representation();
+
+            public String toString(){
+                return etat.toString();
             }
         };
     }
