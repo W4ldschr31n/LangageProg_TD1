@@ -12,7 +12,14 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
     E premier(); //Premier de la file
     K suivants(); // Ses suivants
 
-    K ajouter(E e);
+    default K ajouter(E e){
+        return creer(e, sujet());
+    }
+
+    @SuppressWarnings("unchecked")
+    default K sujet(){
+        return (K)this;
+    }
 
     default boolean estVide(){
         return true;

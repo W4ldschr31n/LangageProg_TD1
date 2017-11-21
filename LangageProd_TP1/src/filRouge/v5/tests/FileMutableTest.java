@@ -13,9 +13,9 @@ public class FileMutableTest {
 
         System.out.println("taille  0 ? = " +file.taille());
         System.out.println("estVide true ? = "+file.estVide());
-        file.ajout("un");
+        file.ajouter("un");
         System.out.println("File [un] = "+file.representation());
-        file.ajout("deux");file.ajout("trois");
+        file.ajouter("deux");file.ajouter("trois");
         System.out.println("File [un,deux,trois]="+file.representation());
         System.out.println("taille  3 ? = "+file.taille());
         System.out.println("tete  un ? = "+file.premier());
