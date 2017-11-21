@@ -1,5 +1,7 @@
 package filRouge.v5;
 
+import java.util.Iterator;
+
 public interface FileMutable<E> extends
 	File<FileMutable<E>, E>,
 	IdentifiableParIteration<FileMutable<?>, E>,
@@ -12,11 +14,12 @@ public interface FileMutable<E> extends
 	void ajouter(E element);
 	void retirer();
 
-	FileMutable<E> getReste(); // Les elements suivants
 
 	@Override
 	default FileMutable<E> suivants(){ // Une copie des elements suivants
-		return getReste().creerCopie();
+		FileMutable<E> copie = creerCopie();
+		copie.retirer();
+		return copie;
 	}
 
 
@@ -40,99 +43,6 @@ public interface FileMutable<E> extends
 		return copie;
 	}
 
-	void ajouter(FileMutable<E> secondeFile);
-}
-	
-	/*
-	 * Services
-	 */
-/*Fabriques statiques
-	public static <E> FileMutable<E> vide() {
-		return new FileMutable<E>() {
-
-			@Override
-			public boolean casVide(){
-				return true;
-			}
-			@Override
-			public boolean equals(Object obj){
-				if(!(obj instanceof FileMutable<?>))
-					return false;
-				FileMutable<?> l = (FileMutable<?>)obj;
-				return this.estEgal(l);
-			}
-			@Override
-			public String toString() {
-				return this.representation();
-			}
-
-		};
-	}
-
-	
-	public static <E> FileMutable<E> cons(E t, FileMutable<E> r) {
-		return new FileMutable<E>() {
-			private E tete = t;
-			private FileMutable<E> reste = r;
-			private int taille = r.taille() + 1;
-			@Override
-			public boolean casCons(){
-				return true;
-			}
-			public E tete() {
-				return this.tete;
-			}
-			public FileMutable<E> reste() {
-				return this.reste;
-			}
-			@Override
-			public int taille() {
-				return this.taille;
-			}
-
-			@Override
-			public void changerTete(E tete) {
-				this.tete = tete;
-			}
-
-			@Override
-			public void ajouter(E element) {
-				this.reste = this.creerCopie();
-				this.tete = element;
-			}
-
-			@Override
-			public void retirer() {
-				this.tete = this.reste.tete();
-				this.reste = this.reste.reste();
-			}
-
-			@Override
-			public void changerReste(FileMutable<E> reste) {
-				this.reste = reste;
-			}
-			@Override
-			public boolean equals(Object obj){
-				if(!(obj instanceof FileMutable<?>))
-					return false;
-				FileMutable<?> l = (FileMutable<?>)obj;
-				return this.estEgal(l);
-			}
-			@Override
-			public String toString() {
-				return this.representation();
-			}
-		};
-	}
-
-	default FileMutable ajout(E element){
-		return 	cons(element,this);
-	}
-	@Override
-	default FileMutable<E> retrait(){
-		return 	this.suivants();
-	}
-
 	//facultatif
 	default void ajouter(FileMutable<E> file2){
 		for(E element : file2){
@@ -141,5 +51,103 @@ public interface FileMutable<E> extends
 	}
 
 
+	/**
+	 * Fabriques statiques
+	 */
+
+
+	static <E> FileMutable<E> creerAvecEtatMutable(EtatFileMutable<EtatFileMutable, E> etatFile){
+		return new FileMutable<E>() {
+			private EtatFileMutable<EtatFileMutable, E> etat = etatFile;
+
+			@Override
+			public void ajouter(E e) {
+				etat.ajouter(e);
+			}
+
+			@Override
+			public void retirer() {
+				etat = etat.suivants();
+			}
+
+			@Override
+			public FileMutable<E> creerCopie() {
+				return creerAvecEtatMutable(etat);
+			}
+
+			@Override
+			public E premier() {
+				return etat.premier();
+			}
+
+			@Override
+			public FileMutable<E> creer() {
+				return creerAvecEtatMutable(EtatFileMutable.vide());
+			}
+
+			@Override
+			public int taille() {
+				return etat.taille();
+			}
+
+			@Override
+			public Iterator<E> iterator() {
+				return etat.iterator();
+			}
+
+			public String toString(){
+				return etat.toString();
+			}
+		};
+	}
+
+	static <E> FileMutable<E> creerAvecEtatImmutable(EtatFileImmutable<EtatFileImmutable, E> etatFile){
+		return new FileMutable<E>() {
+			private EtatFileImmutable<EtatFileImmutable, E> etat = etatFile;
+
+			@Override
+			public void ajouter(E e) {
+				etat.ajouter(e);
+			}
+
+			@Override
+			public void retirer() {
+				etat = etat.suivants();
+			}
+
+			@Override
+			public FileMutable<E> creerCopie() {
+				return creerAvecEtatImmutable(etat);
+			}
+
+			@Override
+			public E premier() {
+				return etat.premier();
+			}
+
+			@Override
+			public FileMutable<E> creer() {
+				return creerAvecEtatImmutable(EtatFileImmutable.vide());
+			}
+
+			@Override
+			public int taille() {
+				return etat.taille();
+			}
+
+			@Override
+			public Iterator<E> iterator() {
+				return etat.iterator();
+			}
+
+			public String toString(){
+				return etat.toString();
+			}
+		};
+	}
+
+
+
+
+
 }
-*/
