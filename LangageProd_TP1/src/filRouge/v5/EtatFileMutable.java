@@ -38,7 +38,7 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 			private ListeMutable<E> liste;
 
 			{
-				liste = liste.creer();
+				liste = ListeMutable.vide();
 				for(E el:etat){
 					liste = liste.creer(el);
 				}
