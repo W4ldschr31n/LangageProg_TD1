@@ -62,7 +62,7 @@ public interface FileMutable<E> extends
 
 			@Override
 			public void ajouter(E e) {
-				etat.ajouter(e);
+				etat = etat.ajouter(e);
 			}
 
 			@Override
@@ -107,7 +107,7 @@ public interface FileMutable<E> extends
 
 			@Override
 			public void ajouter(E e) {
-				etat.ajouter(e);
+				etat = etat.ajouter(e);
 			}
 
 			@Override
