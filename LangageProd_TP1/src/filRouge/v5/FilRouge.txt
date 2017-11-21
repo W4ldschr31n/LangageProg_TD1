@@ -18,3 +18,18 @@ Ensuite on crée une file avec l'etat en parametre
 Puis on appelle les services de la file
 Ça marche
 P.A.P.
+
+
+                File                                                   Etat
+                 |                                                       |
+                 |                                                       |
+                 |                                                       |
+         ______________                                         _________________
+        /               \                                      /                 \
+       /                 \                                    /                   \
+      /                   \                                  /                     \
+ FileMutable            FileImmutable                    EtatMutable          EtatImmutable
+                                                            |                       |
+                                                            |                       |
+                                                            |                       |
+                                                 ImplementationMutable      ImplementationImmutable
