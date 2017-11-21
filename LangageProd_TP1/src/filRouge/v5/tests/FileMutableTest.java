@@ -9,7 +9,7 @@ public class FileMutableTest {
     public static void main(String[] args){
         System.out.println( "Test FileMutables");
         EtatFileMutable<EtatFileMutable,String> etat0 = EtatFileMutable.vide();
-        FileMutable<String> file = FileMutable.creerAvecEtatMutable(etat0);
+        FileMutable<String> file = FileMutable.creerAvecEtat(etat0);
 
         System.out.println("taille  0 ? = " +file.taille());
         System.out.println("estVide true ? = "+file.estVide());

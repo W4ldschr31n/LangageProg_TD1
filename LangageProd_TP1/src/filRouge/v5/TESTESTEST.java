@@ -7,7 +7,7 @@ public class TESTESTEST {
 
         System.out.println( "Test FileMutable par EtatMutable");
 
-        FileMutable<String> fileMEM = FileMutable.creerAvecEtatMutable(etatMutable);
+        FileMutable<String> fileMEM = FileMutable.creerAvecEtat(etatMutable);
 
         System.out.println("taille  0 ? = " +fileMEM.taille());
         System.out.println("estVide true ? = "+fileMEM.estVide());
@@ -20,7 +20,7 @@ public class TESTESTEST {
         System.out.println("Suivants [deux,trois]="+fileMEM.suivants().representation());
 
         System.out.println( "Test FileMutable par EtatImmutable");
-        FileMutable<String> fileMEI = FileMutable.creerAvecEtatImmutable(etatImmutable);
+        FileMutable<String> fileMEI = FileMutable.creerAvecEtat(etatImmutable);
 
         System.out.println("taille  0 ? = " +fileMEI.taille());
         System.out.println("estVide true ? = "+fileMEI.estVide());
@@ -37,7 +37,7 @@ public class TESTESTEST {
         etatMutable = EtatFileMutable.vide();
         etatImmutable = EtatFileImmutable.vide();
         System.out.println( "Test FileImmutable par EtatMutable");
-        FileImmutable<String> fileIEM = FileImmutable.creerAvecEtatMutable(etatMutable);
+        FileImmutable<String> fileIEM = FileImmutable.creerAvecEtat(etatMutable);
 
         System.out.println("taille  0 ? = " +fileIEM.taille());
         System.out.println("estVide true ? = "+fileIEM.estVide());
@@ -50,7 +50,7 @@ public class TESTESTEST {
         System.out.println("Suivants [deux,trois]="+fileIEM.suivants().representation());
 
         System.out.println( "Test FileImmutable par EtatImmutable");
-        FileImmutable<String> fileIEI = FileImmutable.creerAvecEtatImmutable(etatImmutable);
+        FileImmutable<String> fileIEI = FileImmutable.creerAvecEtat(etatImmutable);
 
         System.out.println("taille  0 ? = " +fileIEI.taille());
         System.out.println("estVide true ? = "+fileIEI.estVide());

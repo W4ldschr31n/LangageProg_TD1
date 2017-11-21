@@ -31,14 +31,14 @@ public interface FileImmutable<E> extends
     /*
      * Fabriques statiques.
      */
-    static <E> FileImmutable<E> creerAvecEtat(EtatFile<? extends EtatFile, E> etatFile){
+    static <E> FileImmutable<E> creerAvecEtat(EtatFile etatFile){
         return new FileImmutable<E>() {
             private EtatFile<? extends EtatFile, E> etat = etatFile;
 
             @Override
             @SuppressWarnings("unchecked")
             public FileImmutable<E> creer(E e) {
-                return  null;//creerAvecEtat(etat.creer(e, etat));
+                return  creerAvecEtat(etat.ajouter(e));
             }
 
             @Override
@@ -72,90 +72,5 @@ public interface FileImmutable<E> extends
             }
         };
     }
-
-    static <E> FileImmutable<E> creerAvecEtatMutable(EtatFileMutable<EtatFileMutable, E> etatFile){
-        return new FileImmutable<E>() {
-            private EtatFileMutable<EtatFileMutable, E> etat = etatFile;
-
-            @Override
-            @SuppressWarnings("unchecked")
-            public FileImmutable<E> creer(E e) {
-                return  creerAvecEtatMutable(EtatFileMutable.cons(e, etat));
-            }
-
-            @Override
-            public E premier() {
-                return etat.premier();
-            }
-
-            @Override
-            public FileImmutable<E> suivants() {
-                return creerAvecEtatMutable(etat.suivants());
-            }
-
-            @Override
-            @SuppressWarnings("unchecked")
-            public FileImmutable<E> creer() {
-                return creerAvecEtatMutable(EtatFileMutable.vide());
-            }
-
-            @Override
-            public int taille() {
-                return etat.taille();
-            }
-
-            @Override
-            public Iterator<E> iterator() {
-                return etat.iterator();
-            }
-
-            public String toString(){
-                return etat.toString();
-            }
-        };
-    }
-
-    static <E> FileImmutable<E> creerAvecEtatImmutable(EtatFileImmutable<? extends EtatFileImmutable, E> etatFile){
-        return new FileImmutable<E>() {
-            private EtatFileImmutable<? extends EtatFileImmutable, E> etat = etatFile;
-
-            @Override
-            @SuppressWarnings("unchecked")
-            public FileImmutable<E> creer(E e) {
-                return  creerAvecEtatImmutable(EtatFileImmutable.cons(e, etat));
-            }
-
-            @Override
-            public E premier() {
-                return etat.premier();
-            }
-
-            @Override
-            public FileImmutable<E> suivants() {
-                return creerAvecEtatImmutable(etat.suivants());
-            }
-
-            @Override
-            @SuppressWarnings("unchecked")
-            public FileImmutable<E> creer() {
-                return creerAvecEtatImmutable(EtatFileImmutable.vide());
-            }
-
-            @Override
-            public int taille() {
-                return etat.taille();
-            }
-
-            @Override
-            public Iterator<E> iterator() {
-                return etat.iterator();
-            }
-
-            public String toString(){
-                return etat.toString();
-            }
-        };
-    }
-
 
 }

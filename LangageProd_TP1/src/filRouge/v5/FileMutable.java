@@ -55,14 +55,13 @@ public interface FileMutable<E> extends
 	 * Fabriques statiques
 	 */
 
-
-	static <E> FileMutable<E> creerAvecEtatMutable(EtatFileMutable<EtatFileMutable, E> etatFile){
+	static <E> FileMutable<E> creerAvecEtat(EtatFile etatFile){
 		return new FileMutable<E>() {
-			private EtatFileMutable<EtatFileMutable, E> etat = etatFile;
+			EtatFile<? extends EtatFile, E> etat = etatFile;
 
 			@Override
-			public void ajouter(E e) {
-				etat = etat.ajouter(e);
+			public void ajouter(E element) {
+				etat = etat.ajouter(element);
 			}
 
 			@Override
@@ -72,7 +71,7 @@ public interface FileMutable<E> extends
 
 			@Override
 			public FileMutable<E> creerCopie() {
-				return creerAvecEtatMutable(etat);
+				return creerAvecEtat(etat);
 			}
 
 			@Override
@@ -82,7 +81,7 @@ public interface FileMutable<E> extends
 
 			@Override
 			public FileMutable<E> creer() {
-				return creerAvecEtatMutable(EtatFileMutable.vide());
+				return creerAvecEtat(etat.creer());
 			}
 
 			@Override
@@ -100,53 +99,6 @@ public interface FileMutable<E> extends
 			}
 		};
 	}
-
-	static <E> FileMutable<E> creerAvecEtatImmutable(EtatFileImmutable<EtatFileImmutable, E> etatFile){
-		return new FileMutable<E>() {
-			private EtatFileImmutable<EtatFileImmutable, E> etat = etatFile;
-
-			@Override
-			public void ajouter(E e) {
-				etat = etat.ajouter(e);
-			}
-
-			@Override
-			public void retirer() {
-				etat = etat.suivants();
-			}
-
-			@Override
-			public FileMutable<E> creerCopie() {
-				return creerAvecEtatImmutable(etat);
-			}
-
-			@Override
-			public E premier() {
-				return etat.premier();
-			}
-
-			@Override
-			public FileMutable<E> creer() {
-				return creerAvecEtatImmutable(EtatFileImmutable.vide());
-			}
-
-			@Override
-			public int taille() {
-				return etat.taille();
-			}
-
-			@Override
-			public Iterator<E> iterator() {
-				return etat.iterator();
-			}
-
-			public String toString(){
-				return etat.toString();
-			}
-		};
-	}
-
-
 
 
 
