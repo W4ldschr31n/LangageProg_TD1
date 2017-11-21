@@ -4,12 +4,10 @@ import java.util.Iterator;
 
 public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 
-
-	public static <K,E> EtatFileMutable creerVide(){
+	static <K,E> EtatFileMutable<K,E> vide(){
 		return new EtatFileMutable<K,E>(){
-			ListeMutable<E> reste = ListeMutable.vide();
-			E tete=null;
-			
+			private ListeMutable<E> liste = ListeMutable.vide();
+
 			@Override
 			public E premier() {
 				throw new UnsupportedOperationException();
@@ -27,44 +25,69 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 
 			@Override
 			public Iterator<E> iterator() {
-				return this.reste.iterator();
+				return liste.iterator();
 			}
-			
+
+
+
 		};
 	}
 
-	
-
-
-	public static <K,E> EtatFileMutable creerCons(E element, EtatFileMutable etatFileMutable){
+	static <K,E> EtatFileMutable<K,E> cons(E e, EtatFileMutable<K,E> etat){
 		return new EtatFileMutable<K,E>(){
-			ListeMutable<E> reste = ListeMutable.vide();
-			E tete=null;
+			private ListeMutable<E> liste;
+
+			{
+				liste = liste.creer();
+				for(E el:etat){
+					liste = liste.creer(el);
+				}
+				liste = liste.creer(e);
+				liste = liste.miroir();
+			}
 
 			@Override
 			public E premier() {
-				// TODO Auto-generated method stub
-				return null;
+				return liste.tete();
 			}
 
 			@Override
 			public EtatFileMutable<K, E> suivants() {
-				// TODO Auto-generated method stub
-				return null;
+				EtatFileMutable<K,E> suivants = EtatFileMutable.vide();
+				Iterator<E> it = this.iterator();
+				if (this.estVide()){
+					throw new UnsupportedOperationException();
+				}
+				else{
+					it.next();
+					while (it.hasNext()){
+						suivants = EtatFileMutable.cons(it.next(),suivants);
+					}
+					return suivants;
+				}
 			}
 
 			@Override
 			public int taille() {
-				// TODO Auto-generated method stub
-				return 0;
+				return liste.taille();
 			}
 
 			@Override
 			public Iterator<E> iterator() {
-				// TODO Auto-generated method stub
-				return null;
+				return liste.iterator();
 			}
-			
+
+			public String representer(){
+				return liste.representation();
+			}
+
+			@Override
+			public boolean estVide(){
+				return liste.casVide();
+			}
+
 		};
 	}
+
+
 }
