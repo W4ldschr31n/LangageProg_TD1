@@ -26,6 +26,20 @@ public class PerfMutablesImmutable {
         fileIm = FileImmutable.creerAvecEtat(etatImmut);
         perfTester(fileIm);
 
+        EnveloppeListeMutableDoubleAcces<String> etatMutDoubleAcces = new EnveloppeListeMutableDoubleAcces<>();
+         fileMut = FileMutable.creerAvecEtat(etatMutDoubleAcces);
+        perfTester(fileMut);
+
+        fileIm = FileImmutable.creerAvecEtat(etatMutDoubleAcces);
+        perfTester(fileIm);
+
+        EnveloppeDeuxListesImmutables<String> etatImmutDoubleAcess = new EnveloppeDeuxListesImmutables<>();
+        fileMut = FileMutable.creerAvecEtat(etatImmutDoubleAcess);
+        perfTester(fileMut);
+
+        fileIm = FileImmutable.creerAvecEtat(etatImmutDoubleAcess);
+        perfTester(fileIm);
+
 
     }
 
