@@ -12,8 +12,8 @@ public class EnveloppeListeMutableDoubleAcces<E> implements EtatFileMutable<Enve
     }
     public EnveloppeListeMutableDoubleAcces(ListeMutable debut, ListeMutable fin){
         if(debut.estVide()){
-            debut = (ListeMutable) fin.miroir();
-            fin = ListeMutable.vide();
+            this.debut = (ListeMutable) fin.miroir();
+            this.fin = ListeMutable.vide();
         }else {
             this.debut = debut;
             this.fin = fin;
@@ -22,14 +22,25 @@ public class EnveloppeListeMutableDoubleAcces<E> implements EtatFileMutable<Enve
 
     }
 
+
+
     @Override
     public E premier() {
         return this.debut.tete();
     }
 
     @Override
-    public EtatFileMutable<EnveloppeListeMutableDoubleAcces<E>, E> suivants() {
-        return new EnveloppeListeMutableDoubleAcces(debut.reste(),fin);
+    public EnveloppeListeMutableDoubleAcces<E> creer() {
+        return new EnveloppeListeMutableDoubleAcces<>();
+    }
+
+    public EnveloppeListeMutableDoubleAcces<E> creer(E dernier) {
+        return new EnveloppeListeMutableDoubleAcces<E>(this.debut,ListeMutable.cons(dernier,this.fin));
+    }
+
+    @Override
+    public EnveloppeListeMutableDoubleAcces<E> suivants() {
+        return new EnveloppeListeMutableDoubleAcces<E>(debut.reste(),fin);
     }
 
     @Override
