@@ -2,15 +2,15 @@ package filRouge.v5;
 
 import java.util.Iterator;
 
-public class EtatFileMutableEnveloppe2ListeMutable<E> implements EtatFileMutable<EtatFileMutableEnveloppe2ListeMutable<E>,E> {
+public class EnveloppeListeMutableDoubleAcces<E> implements EtatFileMutable<EnveloppeListeMutableDoubleAcces<E>,E> {
     private ListeMutable<E> debut;
     private ListeMutable<E> fin;
 
-    public EtatFileMutableEnveloppe2ListeMutable(){
+    public EnveloppeListeMutableDoubleAcces(){
         this.debut = ListeMutable.vide();
         this.fin = ListeMutable.vide();
     }
-    public EtatFileMutableEnveloppe2ListeMutable(ListeMutable debut, ListeMutable fin){
+    public EnveloppeListeMutableDoubleAcces(ListeMutable debut, ListeMutable fin){
         if(debut.estVide()){
             debut = (ListeMutable) fin.miroir();
             fin = ListeMutable.vide();
@@ -28,8 +28,8 @@ public class EtatFileMutableEnveloppe2ListeMutable<E> implements EtatFileMutable
     }
 
     @Override
-    public EtatFileMutable<EtatFileMutableEnveloppe2ListeMutable<E>, E> suivants() {
-        return new EtatFileMutableEnveloppe2ListeMutable(debut.reste(),fin);
+    public EtatFileMutable<EnveloppeListeMutableDoubleAcces<E>, E> suivants() {
+        return new EnveloppeListeMutableDoubleAcces(debut.reste(),fin);
     }
 
     @Override
