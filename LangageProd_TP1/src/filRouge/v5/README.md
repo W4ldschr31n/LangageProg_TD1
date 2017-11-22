@@ -33,15 +33,22 @@ Nous avons factorisé la méthode ajouter(E) dans l'interface EtatFile car cela 
 //Factoriser les méthodes redondantes type suivants, miroir?
 
 ##Analyse comparative des performances
-Ci-dessous les résultats obtenus par Th pour 500 ajouts et 250 retraits:
-FileMutable - EtatFileMutable$2  ajout/retrait: 4062
-FileImmutable - EtatFileMutable$2  ajout/retrait: 3750
-FileMutable - EtatFileImmutable$1  ajout/retrait: 7187
-FileImmutable - EtatFileImmutable$1  ajout/retrait: 5625
-FileMutable - EtatFileMutable$2  ajout/retrait: 2656
-FileImmutable - EtatFileMutable$2  ajout/retrait: 2343
-FileMutable - EnveloppeDeuxListesImmutables  ajout/retrait: 0
-FileImmutable - EnveloppeDeuxListesImmutables  ajout/retrait: 0
+### Performances des états définis dans des interfaces concrètes (avec classes anonymes)
+Ci-dessous un des résultats obtenus (en milli secondes) par Thread Bean pour 500 ajouts et 250 retraits sur les files ayant des états définis dans des interfaces concrètes:
+FileMutable - EtatFileMutable$2  ajout/retrait: 406
+FileImmutable - EtatFileMutable$2  ajout/retrait: 375
+FileMutable - EtatFileImmutable$1  ajout/retrait: 718
+FileImmutable - EtatFileImmutable$1  ajout/retrait: 562
 
-On voit dans un premier temps que l'EtatFileImmutable est en moyenne deux fois moins efficace que l'étatFileMutable
-Egalement, les implémentations à partir de deux listes sont deux fois plus efficaces que les états définis a partir de classes annonymes.
+Nous avons remarqué que l'EtatFileImmutable est en moyenne deux fois moins efficace que l'étatFileMutable.
+
+### Performances des états implémentés avec deux listes
+Ci-dessous un des  résultats obtenus (en milli secondes) par Thread Bean pour un million ajouts et un million retraits sur les files ayant des états implémentés par deux listes.
+class filRouge.v5.FileMutable$1-class filRouge.v5.EnveloppeListeMutableDoubleAcces  ajout: 78	retrait : 31
+class filRouge.v5.FileImmutable$1-class filRouge.v5.EnveloppeListeMutableDoubleAcces  ajout: 46	retrait : 31
+class filRouge.v5.FileMutable$1-class filRouge.v5.EnveloppeDeuxListesImmutables  ajout: 62	retrait : 31
+class filRouge.v5.FileImmutable$1-class filRouge.v5.EnveloppeDeuxListesImmutables  ajout: 46	retrait : 46
+
+On remarque que les états implémentés sont beaucoup plus performants, nous avons observé une complexité en O(log(n)).
+
+

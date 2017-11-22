@@ -25,8 +25,8 @@ public class PerfFileImmutable {
         FileImmutable<String> fileIEMI = FileImmutable.creerAvecEtat(etatMutDoubleAcces);
         FileImmutable<String> fileIEII = FileImmutable.creerAvecEtat(etatImmutDoubleAcess);
 
-        perfTester(fileIEMC);
-        perfTester(fileIEIC);
+        //perfTester(fileIEMC);
+        //perfTester(fileIEIC);
         perfTester(fileIEMI);
         perfTester(fileIEII);
 
@@ -35,17 +35,16 @@ public class PerfFileImmutable {
 
     public static void perfTester(FileImmutable file){
         long temps = threadBean.getCurrentThreadCpuTime();
-
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 100000; i++) {
             file = file.ajout("element"+i);
         }
-        for (int i = 0; i < 250; i++) {
+        long tempsAjout = threadBean.getCurrentThreadCpuTime();
+        for (int i = 0; i < 100000; i++) {
             file = file.retrait();
 
         }
-
-        temps= threadBean.getCurrentThreadCpuTime() - temps;
-        System.out.println(file.getClass()+"-"+file.typeEtat() + "  ajout/retrait: " + (temps / diviseur));
+        long tempsRetrait= threadBean.getCurrentThreadCpuTime();
+        System.out.println(file.getClass()+"-"+file.typeEtat() + "  ajout: " + (tempsAjout-temps)+"\tretrait : "+(tempsRetrait-tempsAjout));
 
     }
 

@@ -8,7 +8,6 @@ import java.lang.management.ThreadMXBean;
 
 public class PerfFileMutable {
     private static final ThreadMXBean threadBean = ManagementFactory.getThreadMXBean();
-    private static long diviseur = 100000;
 
     public static void main(String[] args){
 
@@ -25,8 +24,8 @@ public class PerfFileMutable {
         FileMutable<String> fileMEMI = FileMutable.creerAvecEtat(etatMutDoubleAcces);
         FileMutable<String> fileMEII = FileMutable.creerAvecEtat(etatImmutDoubleAcess);
 
-        perfTester(fileMEMC);
-        perfTester(fileMEIC);
+        //perfTester(fileMEMC);
+        //perfTester(fileMEIC);
         perfTester(fileMEMI);
         perfTester(fileMEII);
 
@@ -35,17 +34,16 @@ public class PerfFileMutable {
 
     public static void perfTester(FileMutable file){
         long temps = threadBean.getCurrentThreadCpuTime();
-
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 100000; i++) {
             file.ajouter("element"+i);
         }
-        for (int i = 0; i < 250; i++) {
+        long tempsAjout = threadBean.getCurrentThreadCpuTime();
+        for (int i = 0; i < 100000; i++) {
             file.retirer();
 
         }
-
-        temps= threadBean.getCurrentThreadCpuTime() - temps;
-        System.out.println(file.getClass()+"-"+file.typeEtat() + "  ajout/retrait: " + (temps / diviseur));
+        long tempsRetrait= threadBean.getCurrentThreadCpuTime();
+        System.out.println(file.getClass()+"-"+file.typeEtat() + "  ajout: " + (tempsAjout-temps)+"\tretrait : "+(tempsRetrait-tempsAjout));
 
     }
 
