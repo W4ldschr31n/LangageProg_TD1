@@ -86,12 +86,6 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 				return liste.representation();
 			}
 
-			@Override
-			public boolean estVide(){
-				return liste.casVide();
-			}
-
-
 
 		};
 	}

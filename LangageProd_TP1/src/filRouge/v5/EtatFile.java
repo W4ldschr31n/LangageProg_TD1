@@ -22,7 +22,7 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
     }
 
     default boolean estVide(){
-        return true;
+        return taille()==0;
     }
     int taille();
 

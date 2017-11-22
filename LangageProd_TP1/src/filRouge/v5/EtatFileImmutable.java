@@ -59,11 +59,7 @@ public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,
 		    public String representer(){
 		       return liste.representation();
 		    }
-		    
-		    @Override
-		    public boolean estVide(){
-		    	return liste.casVide();
-		    }
+
 
 		};
 	}
