@@ -36,6 +36,11 @@ public interface FileImmutable<E> extends
             private EtatFile<? extends EtatFile, E> etat = etatFile;
 
             @Override
+            public String typeEtat() {
+                return this.etat.getClass().toString();
+            }
+
+            @Override
             @SuppressWarnings("unchecked")
             public FileImmutable<E> creer(E e) {
                 return  creerAvecEtat(etat.ajouter(e));

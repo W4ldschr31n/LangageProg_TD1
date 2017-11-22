@@ -34,4 +34,6 @@ public interface File<K extends File<K, E>, E> extends Iterable<E>, Mesurable {
 		return clone;
 	}
 
+	String typeEtat();
+
 }
