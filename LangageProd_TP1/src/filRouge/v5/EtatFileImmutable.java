@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,E>{
 //	
-	 default EtatFileImmutable<K,E> creer(E e, EtatFileImmutable<K,E> etat){
-	 	return cons(e, etat);
+	 default EtatFileImmutable<K,E> creer(E e){
+	 	return cons(e, this);
 	 }
 	 default EtatFileImmutable<K,E> creer(){
 	 	return vide();

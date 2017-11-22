@@ -13,7 +13,7 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
     K suivants(); // Ses suivants
 
     default K ajouter(E e){
-        return creer(e, sujet());
+        return sujet().creer(e);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,7 +26,7 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
     }
     int taille();
 
-    K creer(E dernier, K etat);
+    K creer(E dernier);
     K creer();
 
     @Override
