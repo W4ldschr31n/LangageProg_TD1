@@ -51,6 +51,7 @@ public interface FileMutable<E> extends
 	}
 
 
+
 	/**
 	 * Fabriques statiques
 	 */
@@ -82,6 +83,11 @@ public interface FileMutable<E> extends
 			@Override
 			public FileMutable<E> creer() {
 				return creerAvecEtat(etat.creer());
+			}
+
+			@Override
+			public String typeEtat() {
+				return this.etat.getClass().toString();
 			}
 
 			@Override
