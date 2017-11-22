@@ -35,6 +35,18 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 				return liste.iterator();
 			}
 
+			public String toString(){
+				return liste.toString();
+			}
+
+			@Override
+			public boolean equals(Object obj) {
+				if (obj instanceof EtatFileMutable){
+					return estEgal((EtatFileMutable)obj);
+				}
+				return false;
+			}
+
 		};
 	}
 
@@ -82,8 +94,16 @@ public interface EtatFileMutable<K,E> extends EtatFile<EtatFileMutable<K,E>,E>{
 				return liste.iterator();
 			}
 
-			public String representer(){
-				return liste.representation();
+			public String toString(){
+				return liste.toString();
+			}
+
+			@Override
+			public boolean equals(Object obj) {
+				if (obj instanceof EtatFileMutable){
+					return estEgal((EtatFileMutable)obj);
+				}
+				return false;
 			}
 
 

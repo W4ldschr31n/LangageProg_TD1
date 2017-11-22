@@ -45,4 +45,18 @@ public class EnveloppeListeMutableDoubleAcces<E> implements EtatFileMutable<Enve
         }
         return concatener.iterator();
     }
+
+    @Override
+    public String toString() {
+        return representation();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof EnveloppeListeMutableDoubleAcces) {
+            estEgal((EtatFileMutable<EnveloppeListeMutableDoubleAcces<E>, E>) obj);
+        }
+        return false;
+    }
+
 }

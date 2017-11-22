@@ -2,7 +2,7 @@ package filRouge.v5;
 
 import java.util.Iterator;
 
-public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesurable{
+public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesurable, RepresentableParIteration<E>, IdentifiableParIteration<K, E>{
 
 
     /**
@@ -31,10 +31,6 @@ public interface EtatFile<K extends EtatFile<K, E>,E> extends Iterable<E>, Mesur
 
     @Override
     Iterator<E> iterator();
-
-    default String representer(){
-        return this.toString();
-    }
 
 
 }

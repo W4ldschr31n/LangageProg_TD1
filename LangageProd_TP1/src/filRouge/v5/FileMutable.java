@@ -103,6 +103,14 @@ public interface FileMutable<E> extends
 			public String toString(){
 				return etat.toString();
 			}
+
+			@Override
+			public boolean equals(Object obj) {
+				if (obj instanceof FileMutable){
+					return estEgal((FileMutable<?>) obj);
+				}
+				return false;
+			}
 		};
 	}
 

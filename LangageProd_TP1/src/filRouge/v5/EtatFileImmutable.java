@@ -56,10 +56,17 @@ public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,
 		        return liste.iterator();
 		    }
 
-		    public String representer(){
-		       return liste.representation();
-		    }
+		    public String toString(){
+		    	return liste.toString();
+			}
 
+			@Override
+			public boolean equals(Object obj) {
+				if (obj instanceof EtatFileImmutable){
+					return estEgal((EtatFileImmutable)obj);
+				}
+				return false;
+			}
 
 		};
 	}
@@ -87,8 +94,17 @@ public interface EtatFileImmutable<K,E> extends EtatFile<EtatFileImmutable<K,E>,
 				return liste.iterator();
 			}
 
-			
-			
+			public String toString(){
+				return liste.toString();
+			}
+
+			@Override
+			public boolean equals(Object obj) {
+				if (obj instanceof EtatFileImmutable){
+					return estEgal((EtatFileImmutable)obj);
+				}
+				return false;
+			}
 		};
 	}
 
