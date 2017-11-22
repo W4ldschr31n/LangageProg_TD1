@@ -31,3 +31,17 @@ Lorsque l'on sollicite les services de la File créée, nous sollicitons ainsi i
 Nous avons factorisé la méthode ajouter(E) dans l'interface EtatFile car cela correspond toujours à la création d'un nouvel etat à partir du courant et d'un nouvel element
 //Vérifier qu'on est bien en mode mutable/immutable à chaque fois
 //Factoriser les méthodes redondantes type suivants, miroir?
+
+##Analyse comparative des performances
+Ci-dessous les résultats obtenus par Th pour 500 ajouts et 250 retraits:
+FileMutable - EtatFileMutable$2  ajout/retrait: 4062
+FileImmutable - EtatFileMutable$2  ajout/retrait: 3750
+FileMutable - EtatFileImmutable$1  ajout/retrait: 7187
+FileImmutable - EtatFileImmutable$1  ajout/retrait: 5625
+FileMutable - EtatFileMutable$2  ajout/retrait: 2656
+FileImmutable - EtatFileMutable$2  ajout/retrait: 2343
+FileMutable - EnveloppeDeuxListesImmutables  ajout/retrait: 0
+FileImmutable - EnveloppeDeuxListesImmutables  ajout/retrait: 0
+
+On voit dans un premier temps que l'EtatFileImmutable est en moyenne deux fois moins efficace que l'étatFileMutable
+Egalement, les implémentations à partir de deux listes sont deux fois plus efficaces que les états définis a partir de classes annonymes.
