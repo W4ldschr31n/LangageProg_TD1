@@ -11,7 +11,7 @@ package filRouge.v5;
 
 import java.util.Iterator;
 
-class EnveloppeDeuxListesImmutables<E> implements EtatFileImmutable<EnveloppeDeuxListesImmutables<E>,E> {
+public class EnveloppeDeuxListesImmutables<E> implements EtatFileImmutable<EnveloppeDeuxListesImmutables<E>,E> {
 
 	private ListeImmutable<E> listeDebut; // liste de tete dans l'ordre
 											// d'arrivée
@@ -73,34 +73,24 @@ class EnveloppeDeuxListesImmutables<E> implements EtatFileImmutable<EnveloppeDeu
 
 	@Override
 	public Iterator<E> iterator() {
-		return listeDebut.iterator();
+		ListeImmutable<E> concatener = listeFin;
+		for (E el: listeDebut.miroir() ) {
+			concatener = concatener.creer(el);
+		}
+		return concatener.iterator();
 	}
 
 	@Override
 	public String toString() {
-		return this.listeDebut.representation();
+		return representation();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof EtatFile)) {
-			return false;
+		if (obj instanceof EnveloppeDeuxListesImmutables) {
+			return estEgal((EtatFileImmutable<EnveloppeDeuxListesImmutables<E>, E>) obj);
 		}
-		EtatFile file = (EtatFile) obj;
-		return this.estEgal(file);
+		return false;
 	}
 
-	boolean estEgal(EtatFile autre) {
-		if (this.taille() != autre.taille()) {
-			return false;
-		}
-		Iterator<E> iter1 = this.iterator();
-		Iterator<?> iter2 = autre.iterator();
-		while (iter1.hasNext()) {
-			if (!iter1.next().equals(iter2.next())) {
-				return false;
-			}
-		}
-		return true;
-	}
 }

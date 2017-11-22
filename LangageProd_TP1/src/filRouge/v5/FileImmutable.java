@@ -75,6 +75,14 @@ public interface FileImmutable<E> extends
             public String toString(){
                 return etat.toString();
             }
+
+            @Override
+            public boolean equals(Object obj) {
+                if (obj instanceof FileImmutable){
+                    return estEgal((FileImmutable<?>) obj);
+                }
+                return false;
+            }
         };
     }
 
