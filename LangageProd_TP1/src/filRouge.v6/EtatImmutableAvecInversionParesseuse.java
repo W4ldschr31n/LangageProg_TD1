@@ -31,12 +31,16 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
 
             @Override
             public EtatFileImmutable<E> creer(E dernier) {
-                return cons(ListeImmutable.<E>vide().creer(dernier), EtatImmutableAvecInversionParesseuse.vide(), ListeImmutable.vide());
+                return cons(ListeImmutable.<E>vide().creer(dernier), new EtatEnveloppeDeuxListesImmutables(), ListeImmutable.vide());
             }
 
             @Override
             public int taille() {
                 return 0;
+            }
+
+            public String toString(){
+                return "file vide";
             }
 
         };
@@ -45,15 +49,16 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
     static <E> EtatImmutableAvecInversionParesseuse<E> cons(ListeImmutable<E> ld, EtatFileImmutable<Miroir<E>> fm, ListeImmutable<E> lf){
         return new EtatImmutableAvecInversionParesseuse<E>() {
             private ListeImmutable<E> _ld = ld; // taille >0
-            private EtatFileImmutable<Miroir<E>> _fm = fm; // pour tout miroit, non vide
-            private ListeImmutable<E> _lf = lf; // taille(ld) > taille(lf)
+            private EtatFileImmutable<Miroir<E>> _fm = fm; // pour tout miroir, non vide
+            private ListeImmutable<E> _lf = lf; // taille(ld) + taille(fm) > taille(lf)
             {
                 //INVARIANT
-                while(!(fm.taille()>lf.taille())){
+                while(!(_fm.taille()+_ld.taille()>_lf.taille())){
+                    //System.out.println("taille ld : "+_ld.taille()+"\ttaille fm : "+_fm.taille()+"\ttaille lf : "+_lf.taille());
                     _fm = fm.creer(new Miroir<>(lf));
                     _lf = ListeImmutable.vide();
                 }
-                while(ld.estVide()){
+                while(_ld.estVide()){
                     _ld = fm.premier().miroir();
                     _fm = fm.suivants();
                 }
@@ -66,7 +71,7 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
 
             @Override
             public int taille() {
-                return _ld.taille();
+                return _ld.taille()+_fm.taille()+_lf.taille();
             }
 
             @Override
@@ -76,13 +81,26 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
 
             @Override
             public EtatFileImmutable<E> suivants() {
-                return taille()>1 ? cons(_ld.reste(), _fm, _lf) : vide();
+                return cons((_ld.taille()>1 ? _ld.reste() : _ld.creer()), _fm, _lf) ;
             }
 
             @Override
             public Iterator<E> iterator() {
-                //return new IterateurEtatFileImmutable<E, EtatFile<EtatImmutableAvecInversionParesseuse>>(this);
-                return null;
+                return new IterateurEtatFileImmutable<>(this);
+                //return null;
+            }
+
+            public String toString(){
+                System.out.println("taille ld : "+_ld.taille()+"\ttaille fm : "+_fm.taille()+"\ttaille lf : "+_lf.taille());
+                System.out.println("taille : "+taille());
+                if(!_ld.estVide())
+                    System.out.println("tete : "+_ld.representation());
+                if(!_fm.estVide())
+                    System.out.println("miroir : "+_fm.representation());
+                if(!_lf.estVide())
+                    System.out.println("queue : "+_lf.representation());
+                String s="";//ld : \n" + ld.representation()+"\nfm : \n"+fm.representation()+"\nlf :\n"+lf.representation();
+                return s;
             }
         };
     }

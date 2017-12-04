@@ -28,4 +28,8 @@ public class Miroir<E> {
             throw new UnsupportedOperationException();
         }
     }
+
+    public String toString(){
+        return inversion.representation();
+    }
 }

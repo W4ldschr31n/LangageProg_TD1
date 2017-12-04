@@ -48,7 +48,7 @@ class EtatEnveloppeDeuxListesImmutables<E> implements EtatFileImmutable<E> {
 	}
 
 	@Override
-	public EtatFileImmutable<E> suivants() {
+	public EtatFileImmutable suivants() {
 		if (this.estVide()) {
 			throw new UnsupportedOperationException();
 		}
