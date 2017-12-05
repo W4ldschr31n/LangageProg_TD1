@@ -13,7 +13,8 @@ public class TestFile {
 
 	public static void main(String[] args) {
 		
-		FileImmutable<Integer> file = new FileImmutableAvecEtatReifie<>(new EtatEnveloppeDeuxListesImmutables<>());
+		//FileImmutable<Integer> file = new FileImmutableAvecEtatReifie<>(new EtatEnveloppeDeuxListesImmutables<>());
+		FileImmutable<Integer> file = new FileImmutableAvecEtatReifie<>(EtatImmutableAvecInversionParesseuse.vide());
 		tester(file);
 		testerUsageLineaire(file);
 		//testerUsageNonLineaire(file); // temps trop long
@@ -75,7 +76,7 @@ public class TestFile {
 
 
 	private static <K extends File<K, Integer>> void testerUsageLineaire(K file) {
-		int t = 11180000;
+		int t = 1118000;
 		long time = threadBean.getCurrentThreadCpuTime();
 
 		for (int i = 0; i < t; i++) {

@@ -23,7 +23,7 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
 
     @Override
     default Iterator<E> iterator() {
-        return new IterateurEtatFileImmutable<>(null);
+        return new IterateurEtatFileImmutable<>(this);
     }
 
     static <E> EtatImmutableAvecInversionParesseuse<E> vide(){
@@ -51,16 +51,22 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
             private ListeImmutable<E> _ld = ld; // taille >0
             private EtatFileImmutable<Miroir<E>> _fm = fm; // pour tout miroir, non vide
             private ListeImmutable<E> _lf = lf; // taille(ld) + taille(fm) > taille(lf)
+            private int taille;
             {
+                taille = ld.taille() + lf.taille();
+                for (Miroir<E> m : fm)
+                    taille += m.taille();
                 //INVARIANT
                 while(!(_fm.taille()+_ld.taille()>_lf.taille())){
                     //System.out.println("taille ld : "+_ld.taille()+"\ttaille fm : "+_fm.taille()+"\ttaille lf : "+_lf.taille());
-                    _fm = fm.creer(new Miroir<>(lf));
+                    _fm = _fm.creer(new Miroir<>(_lf));
                     _lf = ListeImmutable.vide();
                 }
-                while(_ld.estVide()){
-                    _ld = fm.premier().miroir();
-                    _fm = fm.suivants();
+                if(_ld.estVide()){
+                    while(_fm.premier().estInversible())
+                        _fm.premier().inverser();
+                    _ld = _fm.premier().miroir();
+                    _fm = _fm.suivants();
                 }
             }
 
@@ -71,7 +77,7 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
 
             @Override
             public int taille() {
-                return _ld.taille()+_fm.taille()+_lf.taille();
+                return taille;
             }
 
             @Override
@@ -81,25 +87,21 @@ public interface EtatImmutableAvecInversionParesseuse<E> extends EtatFileImmutab
 
             @Override
             public EtatFileImmutable<E> suivants() {
+                if(taille()==1)
+                    return vide();
                 return cons((_ld.taille()>1 ? _ld.reste() : _ld.creer()), _fm, _lf) ;
             }
 
-            @Override
-            public Iterator<E> iterator() {
-                return new IterateurEtatFileImmutable<>(this);
-                //return null;
-            }
-
             public String toString(){
-                System.out.println("taille ld : "+_ld.taille()+"\ttaille fm : "+_fm.taille()+"\ttaille lf : "+_lf.taille());
-                System.out.println("taille : "+taille());
+                /*System.out.println("taille ld : "+_ld.taille()+"\ttaille fm : "+_fm.taille()+"\ttaille lf : "+_lf.taille());
+                System.out.println("taille : "+taille());*/
+                String s = "";
                 if(!_ld.estVide())
-                    System.out.println("tete : "+_ld.representation());
+                    s+=_ld.representation();
                 if(!_fm.estVide())
-                    System.out.println("miroir : "+_fm.representation());
+                   s+=_fm.representation();
                 if(!_lf.estVide())
-                    System.out.println("queue : "+_lf.representation());
-                String s="";//ld : \n" + ld.representation()+"\nfm : \n"+fm.representation()+"\nlf :\n"+lf.representation();
+                    s+=_lf.representation();
                 return s;
             }
         };

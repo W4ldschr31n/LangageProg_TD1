@@ -18,6 +18,17 @@ public class testEtatImmutable {
         System.out.println(file2);
         file2 = file2.suivants();
         System.out.println(file2);
+        file2 = file2.suivants();
+        System.out.println(file2);
+        file2 = file2.creer(5);
+        System.out.println(file2);
+        file2 = file2.creer(6);
+        System.out.println(file2);
+        file2 = file2.suivants();
+        System.out.println(file2);
+        file2 = file2.suivants();
+        System.out.println(file2);
+
     }
 
 }
